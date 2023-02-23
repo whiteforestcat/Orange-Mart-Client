@@ -4,6 +4,9 @@ import "./App.css";
 import SignUp from "./components/SignUp";
 import NavBar from "./components/NavBar";
 
+import {Route, Routes} from "react-router-dom"
+import HomePage from "./pages/HomePage";
+
 function App() {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -33,7 +36,7 @@ function App() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleLoginForm = (e) => {
     e.preventDefault();
     particulars = {
       email: emailRef.current.value,
@@ -44,15 +47,27 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar email={email} accessToken={accessToken}/>
-      <h1>Existing User? Log in Here</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="logInEmail">Email</label>
-        <input type="text" id="logInEmail" ref={emailRef} />
-        <label htmlFor="logInPassword">Password</label>
-        <input type="text" id="logInPassword" ref={passwordRef} />
-        <button type="submit">Submit</button>
-      </form>
+      <NavBar email={email} accessToken={accessToken} />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <HomePage
+              emailRef={emailRef}
+              passwordRef={passwordRef}
+              handleLoginForm={handleLoginForm}
+            />
+          }
+        />
+        {/* <h1>Existing User? Log in Here</h1>
+        <form onSubmit={handleLoginForm}>
+          <label htmlFor="logInEmail">Email</label>
+          <input type="text" id="logInEmail" ref={emailRef} />
+          <label htmlFor="logInPassword">Password</label>
+          <input type="text" id="logInPassword" ref={passwordRef} />
+          <button type="submit">Submit</button>
+        </form> */}
+      </Routes>
 
       <SignUp />
     </div>

@@ -14,10 +14,10 @@ const SignUp = () => {
           "Content-type": "application/json",
         },
         body: JSON.stringify(
-          //     {
-          //   email: "amir@gmail.com",
-          //   password: "123456789",
-          //     }
+            //   {
+            // email: "amir@gmail.com",
+            // hash: "123456789",
+            //   }
           details
         ),
       });
@@ -31,12 +31,10 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     particulars = {
-      ...particulars,
       email: emailRef.current.value,
-      password: passwordRef.current.value,
+      hash: passwordRef.current.value,
     };
     signUp(particulars);
-    console.log("hello");
   };
 
   return (
