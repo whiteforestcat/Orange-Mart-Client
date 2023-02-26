@@ -3,16 +3,17 @@ import reactLogo from "./assets/react.svg";
 import "./App.css";
 import SignUp from "./components/SignUp";
 import NavBar from "./components/NavBar";
+import NewMessage from "./components/NewMessage";
 
-import {Route, Routes} from "react-router-dom"
+import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 
 function App() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const [logInStatus, setLogInStatus] = useState(false);
-  const [accessToken, setAccessToken] = useState("")
-  const [email, setEmail] = useState("")
+  const [accessToken, setAccessToken] = useState("");
+  const [email, setEmail] = useState(""); // paylaod email is stored here
 
   let particulars = {};
 
@@ -27,10 +28,10 @@ function App() {
       });
       const data = await res.json();
       console.log(data);
-      setAccessToken(data.access)
+      setAccessToken(data.access);
       setLogInStatus(true);
-      setEmail(data.payload.email)
-      console.log("User logged in")
+      setEmail(data.payload.email);
+      console.log("User logged in");
     } catch (error) {
       console.log(error);
     }
@@ -59,6 +60,14 @@ function App() {
             />
           }
         />
+        <Route
+          path="/signup"
+          element={<SignUp />}
+        />
+        <Route
+          path="/newmessage"
+          element={<NewMessage email={email} accessToken={accessToken} />}
+        />
         {/* <h1>Existing User? Log in Here</h1>
         <form onSubmit={handleLoginForm}>
           <label htmlFor="logInEmail">Email</label>
@@ -69,7 +78,7 @@ function App() {
         </form> */}
       </Routes>
 
-      <SignUp />
+      {/* <SignUp /> */}
     </div>
   );
 }

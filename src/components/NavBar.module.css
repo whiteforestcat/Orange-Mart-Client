@@ -1,0 +1,29 @@
+nav {
+  height: 100%;
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  height: 5rem;
+  background-color: #008080;
+}
+
+.navbar a:hover,
+.navbar a:active,
+.navbar a.active {
+  color: whitesmoke;
+  padding-bottom: 0.25rem;
+  border-bottom: 4px solid whitesmoke;
+}
+
+li {
+  margin: 0 1rem;
+  width: 5rem;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
