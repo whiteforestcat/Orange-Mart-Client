@@ -30,6 +30,14 @@ const NavBar = (props) => {
             New Message
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/admin"
+            className={(navData) => (navData.isActive ? styles.active : "")}
+          >
+            ADMIN
+          </NavLink>
+        </li>
       </nav>
       <h4>{props.email}</h4>
     </header>

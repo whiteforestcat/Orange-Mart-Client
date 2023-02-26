@@ -1,12 +1,14 @@
 import { useRef, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+
 import SignUp from "./components/SignUp";
 import NavBar from "./components/NavBar";
 import NewMessage from "./components/NewMessage";
+import AdminAccess from "./components/AdminAccess";
 
-import { Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage";
 
 function App() {
   const emailRef = useRef();
@@ -60,14 +62,16 @@ function App() {
             />
           }
         />
-        <Route
-          path="/signup"
-          element={<SignUp />}
-        />
+        <Route path="/signup" element={<SignUp />} />
         <Route
           path="/newmessage"
           element={<NewMessage email={email} accessToken={accessToken} />}
         />
+        <Route
+          path="/admin"
+          element={<AdminAccess email={email} accessToken={accessToken} />}
+        />
+
         {/* <h1>Existing User? Log in Here</h1>
         <form onSubmit={handleLoginForm}>
           <label htmlFor="logInEmail">Email</label>

@@ -19,7 +19,7 @@ const NewMessage = (props) => {
       console.log(details);
       const data = await res.json();
       console.log(data);
-      console.log("email", props.email);
+      console.log("email:", props.email);
     } catch (error) {
       console.log("FETCH PUT NEW MESSAGE CREATION FAIL", error.message);
     }
