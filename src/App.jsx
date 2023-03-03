@@ -78,7 +78,7 @@ function App() {
         />
         <Route path="/gallery" element={<Gallery itemId={itemId} setItemId={setItemId}/>} />
         <Route path="/favourites" element={<Favourites emailId={emailId}/>} />
-        <Route path="/newfav" element={<NewFav itemId={itemId}/>} />
+        <Route path="/newfav" element={<NewFav itemId={itemId} emailId={emailId}/>} />
 
         {/* <h1>Existing User? Log in Here</h1>
         <form onSubmit={handleLoginForm}>
