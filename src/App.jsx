@@ -2,13 +2,15 @@ import { useRef, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage";
 
+import HomePage from "./pages/HomePage";
 import SignUp from "./components/SignUp";
 import NavBar from "./components/NavBar";
 import NewMessage from "./components/NewMessage";
 import AdminAccess from "./components/AdminAccess";
-
+import Gallery from "./pages/Gallery";
+import Favourites from "./pages/Favourites";
+import NewFav from "./pages/NewFav";
 
 function App() {
   const emailRef = useRef();
@@ -16,6 +18,8 @@ function App() {
   const [logInStatus, setLogInStatus] = useState(false);
   const [accessToken, setAccessToken] = useState("");
   const [email, setEmail] = useState(""); // paylaod email is stored here
+  const [emailId, setEmailId] = useState()  // payload email id is stored here
+  const [itemId, setItemId] = useState() // item id in gallery is stored here
 
   let particulars = {};
 
@@ -33,6 +37,7 @@ function App() {
       setAccessToken(data.access);
       setLogInStatus(true);
       setEmail(data.payload.email);
+      setEmailId(data.payload.id)
       console.log("User logged in");
     } catch (error) {
       console.log(error);
@@ -71,6 +76,9 @@ function App() {
           path="/admin"
           element={<AdminAccess email={email} accessToken={accessToken} />}
         />
+        <Route path="/gallery" element={<Gallery itemId={itemId} setItemId={setItemId}/>} />
+        <Route path="/favourites" element={<Favourites emailId={emailId}/>} />
+        <Route path="/newfav" element={<NewFav itemId={itemId}/>} />
 
         {/* <h1>Existing User? Log in Here</h1>
         <form onSubmit={handleLoginForm}>

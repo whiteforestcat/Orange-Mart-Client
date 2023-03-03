@@ -38,6 +38,30 @@ const NavBar = (props) => {
             ADMIN
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/gallery"
+            className={(navData) => (navData.isActive ? styles.active : "")}
+          >
+            GALLERY
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/favourites"
+            className={(navData) => (navData.isActive ? styles.active : "")}
+          >
+            Favourites
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/newfav"
+            className={(navData) => (navData.isActive ? styles.active : "")}
+          >
+            NewFav
+          </NavLink>
+        </li>
       </nav>
       <h4>{props.email}</h4>
     </header>
