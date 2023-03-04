@@ -18,8 +18,8 @@ function App() {
   const [logInStatus, setLogInStatus] = useState(false);
   const [accessToken, setAccessToken] = useState("");
   const [email, setEmail] = useState(""); // paylaod email is stored here
-  const [emailId, setEmailId] = useState()  // payload email id is stored here
-  const [itemId, setItemId] = useState() // item id in gallery is stored here
+  const [emailId, setEmailId] = useState(); // payload email id is stored here
+  const [itemId, setItemId] = useState(); // item id in gallery is stored here
 
   let particulars = {};
 
@@ -37,7 +37,7 @@ function App() {
       setAccessToken(data.access);
       setLogInStatus(true);
       setEmail(data.payload.email);
-      setEmailId(data.payload.id)
+      setEmailId(data.payload.id);
       console.log("User logged in");
     } catch (error) {
       console.log(error);
@@ -76,9 +76,17 @@ function App() {
           path="/admin"
           element={<AdminAccess email={email} accessToken={accessToken} />}
         />
-        <Route path="/gallery" element={<Gallery itemId={itemId} setItemId={setItemId}/>} />
-        <Route path="/favourites" element={<Favourites emailId={emailId}/>} />
-        <Route path="/newfav" element={<NewFav itemId={itemId} emailId={emailId}/>} />
+        <Route
+          path="/gallery"
+          element={
+            <Gallery itemId={itemId} setItemId={setItemId} emailId={emailId} />
+          }
+        />
+        <Route path="/favourites" element={<Favourites emailId={emailId} />} />
+        <Route
+          path="/newfav"
+          element={<NewFav itemId={itemId} emailId={emailId} />}
+        />
 
         {/* <h1>Existing User? Log in Here</h1>
         <form onSubmit={handleLoginForm}>

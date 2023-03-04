@@ -21,25 +21,46 @@ const Gallery = (props) => {
   //     });
   // }
 
-//   const addToFav = async () => {
-//     const res = await fetch("http://127.0.0.1:5000/api/addtofavourites", {
-//       method: "POST",
-//       headers: {
-//         "Content-type": "application/json",
-//       },
-//       body: JSON
-//         .stringify
-//         ///////////////// BODY ///////////////////////////
-//         (),
-//     });
-//     const data = await res.json();
-//     setAllItems(data);
-//     console.log(data);
+  //   const addToFav = async () => {
+  //     const res = await fetch("http://127.0.0.1:5000/api/addtofavourites", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-type": "application/json",
+  //       },
+  //       body: JSON
+  //         .stringify
+  //         ///////////////// BODY ///////////////////////////
+  //         (),
+  //     });
+  //     const data = await res.json();
+  //     setAllItems(data);
+  //     console.log(data);
+  //   };
+
+//   const addToFav = (id) => {
+//     props.setItemId(id);
 //   };
 
-const addToFav = (id) => {
+// useEffect(() => {
+//     props.setItemId(item.id)
+// }, [props.itemId])
+
+  const addToFavourites = async (id) => {
     props.setItemId(id)
-}
+    try {
+      const res = await fetch("http://127.0.0.1:5000/api/addtofavourites", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({emailId: props.emailId, itemId: props.itemId}),
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.log("POST FETCH ADD TO USER FAVOURITES FAIL", error.message);
+    }
+  };
 
   const addToCart = () => {};
 
@@ -67,7 +88,7 @@ const addToFav = (id) => {
                   <td>{item.price}</td>
                   <td>{item.tag}</td>
                   <td>
-                    <button onClick={() => addToFav(item.id)}>
+                    <button onClick={() => addToFavourites(item.id)}>
                       Add to Favourites
                     </button>
                   </td>

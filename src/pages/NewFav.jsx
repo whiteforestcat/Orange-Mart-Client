@@ -14,25 +14,27 @@ const NewFav = (props) => {
       });
       const data = await res.json();
       console.log(data);
-      setFavourites(data)
+      setFavourites(data);
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  const addToFavourites = async (details) => {
+  const deleteFav = async (id) => {
+    console.log(id);
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/addtofavourites", {
-        method: "POST",
+      const res = await fetch("http://127.0.0.1:5000/api/deletefav", {
+        method: "DELETE",
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify(details),
+        body: JSON.stringify({ emailId: props.emailId, itemId: id }),
       });
-      const data = res.json();
+      const data = await res.json();
       console.log(data);
+      //   setFavourites(favourites.filter((row) => row.id != id));
     } catch (error) {
-      console.log("POST FETCH ADD TO USER FAVOURITES FAIL", error.message);
+      console.log(error.message);
     }
   };
 
@@ -41,14 +43,36 @@ const NewFav = (props) => {
       <h2>NEW FAV</h2>
       <h3>email id: {props.emailId}</h3>
       <h3>item id: {props.itemId}</h3>
-      <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+          </tr>
+        </thead>
+        <tbody>
+          <button onClick={() => getFavourites()}>All Favourites</button>
+          {favourites &&
+            favourites.map((item, index) => {
+              return (
+                <tr key={index}>
+                  <td>{item.favs_item}</td>
+                  <td>
+                    <button onClick={() => deleteFav(item.itemid)}>
+                      DELETE
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+        </tbody>
+      </table>
+      {/* <div>
         <button onClick={() => getFavourites()}>All Favourites</button>
-        {favourites && favourites.map((item, index) => {
-            return (
-                <div key={index}>{item.favs_item}</div>
-            )
-        })}
-      </div>
+        {favourites &&
+          favourites.map((item, index) => {
+            return <div key={index}>{item.favs_item}</div>;
+          })}
+      </div> */}
     </div>
   );
 };
