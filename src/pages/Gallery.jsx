@@ -37,23 +37,14 @@ const Gallery = (props) => {
   //     console.log(data);
   //   };
 
-//   const addToFav = (id) => {
-//     props.setItemId(id);
-//   };
-
-// useEffect(() => {
-//     props.setItemId(item.id)
-// }, [props.itemId])
-
   const addToFavourites = async (id) => {
-    props.setItemId(id)
     try {
       const res = await fetch("http://127.0.0.1:5000/api/addtofavourites", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({emailId: props.emailId, itemId: props.itemId}),
+        body: JSON.stringify({ emailId: props.emailId, itemId: id }),
       });
       const data = await res.json();
       console.log(data);

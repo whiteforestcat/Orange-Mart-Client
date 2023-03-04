@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const NewFav = (props) => {
-  const [favourites, setFavourites] = useState();
+  const [favourites, setFavourites] = useState([]);
 
   const getFavourites = async () => {
     try {
@@ -21,7 +21,7 @@ const NewFav = (props) => {
   };
 
   const deleteFav = async (id) => {
-    console.log(id);
+    // console.log(id);
     try {
       const res = await fetch("http://127.0.0.1:5000/api/deletefav", {
         method: "DELETE",
@@ -32,7 +32,7 @@ const NewFav = (props) => {
       });
       const data = await res.json();
       console.log(data);
-      //   setFavourites(favourites.filter((row) => row.id != id));
+      setFavourites(favourites.filter((item) => item.itemid !== id));
     } catch (error) {
       console.log(error.message);
     }
