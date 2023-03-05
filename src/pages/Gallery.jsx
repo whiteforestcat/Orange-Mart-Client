@@ -3,6 +3,11 @@ import NewFav from "./Favourites";
 
 const Gallery = (props) => {
   const [allItems, setAllItems] = useState();
+  const [cartQuantity, setCartQuantity] = useState()
+
+  const handleCartQuantity = (event) => {
+    setCartQuantity(event.target.value)
+  }
 
   const fetchDisplayIems = async () => {
     const res = await fetch("http://127.0.0.1:5000/api/allitems");
@@ -60,7 +65,7 @@ const Gallery = (props) => {
             headers: {
                 "Content-type": "application/json"
             },
-            body: JSON.stringify({emailId: props.emailId, itemId: id})
+            body: JSON.stringify({emailId: props.emailId, itemId: id, quantity: cartQuantity})
         });
         const data = await res.json()
         console.log(data)
@@ -98,6 +103,8 @@ const Gallery = (props) => {
                     </button>
                   </td>
                   <td>
+                    <label htmlFor="cart-quantity"></label>
+                    <input type="text" id='cart-quantity' value={cartQuantity} onChange={handleCartQuantity}/>
                     <button onClick={() => addToCart(item.id)}>Add to cart</button>
                   </td>
                 </tr>

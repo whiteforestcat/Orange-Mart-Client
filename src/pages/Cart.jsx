@@ -60,6 +60,7 @@ const Cart = (props) => {
         <thead>
           <tr>
             <th>Item</th>
+            <th>Quantity</th>
           </tr>
         </thead>
         <tbody>
@@ -70,6 +71,7 @@ const Cart = (props) => {
                 return (
                   <tr key={index}>
                     <td>{item.cart_item}</td>
+                    <td>{item.quantity}</td>
                     <td>
                       <button onClick={() => deleteCart(item.itemid)}>
                         DELETE
