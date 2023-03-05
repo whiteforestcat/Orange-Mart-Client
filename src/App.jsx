@@ -11,11 +11,12 @@ import AdminAccess from "./components/AdminAccess";
 import Gallery from "./pages/Gallery";
 import Favourites from "./pages/Favourites";
 import Cart from "./pages/Cart";
+import Shipment from "./pages/Shipment";
 
 function App() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const [logInStatus, setLogInStatus] = useState(false);  // to create logout button
+  const [logInStatus, setLogInStatus] = useState(false); // to create logout button
   const [accessToken, setAccessToken] = useState("");
   const [email, setEmail] = useState(""); // paylaod email is stored here
   const [emailId, setEmailId] = useState(); // payload email id is stored here
@@ -90,6 +91,7 @@ function App() {
           path="/cart"
           element={<Cart itemId={itemId} emailId={emailId} />}
         />
+        <Route path="/shipment" element={<Shipment emailId={emailId}/>} />
 
         {/* <h1>Existing User? Log in Here</h1>
         <form onSubmit={handleLoginForm}>

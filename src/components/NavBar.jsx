@@ -62,6 +62,14 @@ const NavBar = (props) => {
             Cart
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/shipment"
+            className={(navData) => (navData.isActive ? styles.active : "")}
+          >
+            Shipment
+          </NavLink>
+        </li>
       </nav>
       <h4>{props.email}</h4>
     </header>
