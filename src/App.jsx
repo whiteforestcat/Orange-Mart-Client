@@ -10,7 +10,7 @@ import NewMessage from "./components/NewMessage";
 import AdminAccess from "./components/AdminAccess";
 import Gallery from "./pages/Gallery";
 import Favourites from "./pages/Favourites";
-import NewFav from "./pages/NewFav";
+import Cart from "./pages/Cart";
 
 function App() {
   const emailRef = useRef();
@@ -82,10 +82,13 @@ function App() {
             <Gallery itemId={itemId} setItemId={setItemId} emailId={emailId} />
           }
         />
-        <Route path="/favourites" element={<Favourites emailId={emailId} />} />
         <Route
-          path="/newfav"
-          element={<NewFav itemId={itemId} emailId={emailId} />}
+          path="/favourites"
+          element={<Favourites itemId={itemId} emailId={emailId} />}
+        />
+        <Route
+          path="/cart"
+          element={<Cart itemId={itemId} emailId={emailId} />}
         />
 
         {/* <h1>Existing User? Log in Here</h1>

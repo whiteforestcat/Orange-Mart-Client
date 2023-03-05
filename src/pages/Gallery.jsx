@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import NewFav from "./NewFav";
+import NewFav from "./Favourites";
 
 const Gallery = (props) => {
   const [allItems, setAllItems] = useState();

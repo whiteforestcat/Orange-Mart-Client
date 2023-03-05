@@ -56,10 +56,10 @@ const NavBar = (props) => {
         </li>
         <li>
           <NavLink
-            to="/newfav"
+            to="/cart"
             className={(navData) => (navData.isActive ? styles.active : "")}
           >
-            NewFav
+            Cart
           </NavLink>
         </li>
       </nav>
