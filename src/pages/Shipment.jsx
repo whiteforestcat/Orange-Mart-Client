@@ -14,13 +14,28 @@ const Shipment = (props) => {
       });
       const data = await res.json();
       console.log(data);
-      setShipment(data)
+      setShipment(data);
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  const deleteShipment = async () => {};
+  const deleteShipment = async (id) => {
+    try {
+      const res = await fetch("http://127.0.0.1:5000/api/deleteshipment", {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ emailId: props.emailId, cartId: id }),
+      });
+      const data = await res.json();
+      console.log(data);
+      setShipment(shipment.filter((item, index) => item.cardid === index))
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <div>
@@ -38,14 +53,12 @@ const Shipment = (props) => {
               return (
                 <tr key={index}>
                   <td>{item.cart_item}</td>
-                  <td>
-                    <button onClick={() => deleteShipment(item.itemid)}>
-                      DELETE
-                    </button>
-                  </td>
                 </tr>
               );
             })}
+          <td>
+            <button onClick={() => deleteShipment(shipment[0].cartid)}>DELETE</button>
+          </td>
         </tbody>
       </table>
     </div>
