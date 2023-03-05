@@ -15,7 +15,7 @@ import Cart from "./pages/Cart";
 function App() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const [logInStatus, setLogInStatus] = useState(false);
+  const [logInStatus, setLogInStatus] = useState(false);  // to create logout button
   const [accessToken, setAccessToken] = useState("");
   const [email, setEmail] = useState(""); // paylaod email is stored here
   const [emailId, setEmailId] = useState(); // payload email id is stored here

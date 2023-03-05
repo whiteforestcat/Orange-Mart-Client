@@ -22,20 +22,20 @@ const Cart = (props) => {
 
   const deleteCart = async (id) => {
     try {
-        const res = await fetch("http://127.0.0.1:5000/api/deletecart", {
-            method: "DELETE",
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify({emailId: props.emailId, itemId: id})
-        });
-        const data = await res.json()
-        console.log(data)
-        setCart(cart.filter((item) => item.itemid !== id))
+      const res = await fetch("http://127.0.0.1:5000/api/deletecart", {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ emailId: props.emailId, itemId: id }),
+      });
+      const data = await res.json();
+      console.log(data);
+      setCart(cart.filter((item) => item.itemid !== id));
     } catch (error) {
-        console.log(error.message)
+      console.log(error.message);
     }
-  }
+  };
 
   return (
     <div>

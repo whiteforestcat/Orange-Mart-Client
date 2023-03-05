@@ -53,7 +53,21 @@ const Gallery = (props) => {
     }
   };
 
-  const addToCart = () => {};
+  const addToCart = async (id) => {
+    try {
+        const res = await fetch("http://127.0.0.1:5000/api/addtocart", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({emailId: props.emailId, itemId: id})
+        });
+        const data = await res.json()
+        console.log(data)
+    } catch (error) {
+        console.log("POST FETCH ADD TO USER CART FAIL", error.message);
+    }
+  };
 
   return (
     <div>
@@ -84,7 +98,7 @@ const Gallery = (props) => {
                     </button>
                   </td>
                   <td>
-                    <button onClick={() => addToCart()}>Add to cart</button>
+                    <button onClick={() => addToCart(item.id)}>Add to cart</button>
                   </td>
                 </tr>
               );
