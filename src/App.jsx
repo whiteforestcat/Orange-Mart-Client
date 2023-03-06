@@ -59,7 +59,7 @@ function App() {
       <NavBar email={email} accessToken={accessToken} />
       <Routes>
         <Route
-          path="/"
+          path="/login"
           element={
             <HomePage
               emailRef={emailRef}
@@ -78,7 +78,7 @@ function App() {
           element={<AdminAccess email={email} accessToken={accessToken} />}
         />
         <Route
-          path="/gallery"
+          path="/"
           element={
             <Gallery itemId={itemId} setItemId={setItemId} emailId={emailId} />
           }
@@ -91,16 +91,7 @@ function App() {
           path="/cart"
           element={<Cart itemId={itemId} emailId={emailId} />}
         />
-        <Route path="/shipment" element={<Shipment emailId={emailId}/>} />
-
-        {/* <h1>Existing User? Log in Here</h1>
-        <form onSubmit={handleLoginForm}>
-          <label htmlFor="logInEmail">Email</label>
-          <input type="text" id="logInEmail" ref={emailRef} />
-          <label htmlFor="logInPassword">Password</label>
-          <input type="text" id="logInPassword" ref={passwordRef} />
-          <button type="submit">Submit</button>
-        </form> */}
+        <Route path="/shipment" element={<Shipment emailId={emailId} />} />
       </Routes>
 
       {/* <SignUp /> */}

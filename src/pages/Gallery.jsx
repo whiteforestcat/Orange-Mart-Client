@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NewFav from "./Favourites";
+import test from "../assets/images/test.png"
 
 const Gallery = (props) => {
   const [allItems, setAllItems] = useState();
@@ -104,8 +105,15 @@ const Gallery = (props) => {
                   </td>
                   <td>
                     <label htmlFor="cart-quantity"></label>
-                    <input type="text" id='cart-quantity' value={cartQuantity} onChange={handleCartQuantity}/>
-                    <button onClick={() => addToCart(item.id)}>Add to cart</button>
+                    <input
+                      type="text"
+                      id="cart-quantity"
+                      value={cartQuantity}
+                      onChange={handleCartQuantity}
+                    />
+                    <button onClick={() => addToCart(item.id)}>
+                      Add to cart
+                    </button>
                   </td>
                 </tr>
               );
