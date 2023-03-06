@@ -20,6 +20,7 @@ function App() {
   const [accessToken, setAccessToken] = useState("");
   const [email, setEmail] = useState(""); // paylaod email is stored here
   const [emailId, setEmailId] = useState(); // payload email id is stored here
+  const [admin, setAdmin] = useState()
   const [itemId, setItemId] = useState(); // item id in gallery is stored here
 
   let particulars = {};
@@ -41,6 +42,7 @@ function App() {
       }
       setEmail(data.payload.email);
       setEmailId(data.payload.id);
+      setAdmin(data.adminStatus)
       console.log("User logged in");
     } catch (error) {
       console.log(error);
@@ -63,6 +65,7 @@ function App() {
         accessToken={accessToken}
         logInStatus={logInStatus}
         setLogInStatus={setLogInStatus}
+        admin={admin}
       />
       <Routes>
         <Route

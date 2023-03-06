@@ -3,7 +3,6 @@ import styles from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
 
 const NavBar = (props) => {
-
   return (
     <header className={styles.navbar}>
       <nav>
@@ -49,7 +48,7 @@ const NavBar = (props) => {
         )} */}
 
         {props.email && (
-          <div>
+          <div className="flex">
             <li>
               <NavLink
                 to="/newmessage"
@@ -58,15 +57,18 @@ const NavBar = (props) => {
                 New Message
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/admin"
-                className={(navData) => (navData.isActive ? styles.active : "")}
-              >
-                ADMIN
-              </NavLink>
-            </li>
-
+            {props.admin && (
+              <li>
+                <NavLink
+                  to="/admin"
+                  className={(navData) =>
+                    navData.isActive ? styles.active : ""
+                  }
+                >
+                  ADMIN
+                </NavLink>
+              </li>
+            )}
             <li>
               <NavLink
                 to="/favourites"
