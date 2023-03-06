@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import NewFav from "./Favourites";
-import test from "../assets/images/test.png"
+// import NewFav from "./Favourites";
+// import test from "../assets/images/test.png"
+import { galleryImage } from "../image";
 
 const Gallery = (props) => {
   const [allItems, setAllItems] = useState();
@@ -78,23 +79,26 @@ const Gallery = (props) => {
   return (
     <div>
       <h1>GALLERY</h1>
+      <img src={galleryImage[0].image} alt="" />
       {allItems && (
         <table>
           <thead>
             <tr>
               <th>id</th>
               <th>name</th>
+              <th>picture</th>
               <th>desciption</th>
               <th>price ($)</th>
               <th>tag</th>
             </tr>
           </thead>
           <tbody>
-            {allItems.map((item) => {
+            {allItems.map((item, index) => {
               return (
                 <tr key={item.id}>
                   <td>{item.id}</td>
                   <td>{item.name}</td>
+                  <td></td>
                   <td>{item.description}</td>
                   <td>{item.price}</td>
                   <td>{item.tag}</td>
