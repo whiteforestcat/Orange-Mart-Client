@@ -16,6 +16,14 @@ const NavBar = (props) => {
         </li>
         <li>
           <NavLink
+            to="/login"
+            className={(navData) => (navData.isActive ? styles.active : "")}
+          >
+            Log In
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="/signup"
             className={(navData) => (navData.isActive ? styles.active : "")}
           >
@@ -38,14 +46,7 @@ const NavBar = (props) => {
             ADMIN
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            to="/gallery"
-            className={(navData) => (navData.isActive ? styles.active : "")}
-          >
-            GALLERY
-          </NavLink>
-        </li>
+
         <li>
           <NavLink
             to="/favourites"
