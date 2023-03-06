@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
+import "./index.css";
 import { Route, Routes } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
@@ -12,6 +11,7 @@ import Gallery from "./pages/Gallery";
 import Favourites from "./pages/Favourites";
 import Cart from "./pages/Cart";
 import Shipment from "./pages/Shipment";
+import UserLogo from "./pages/UserLogo";
 
 function App() {
   const emailRef = useRef();
@@ -36,7 +36,9 @@ function App() {
       const data = await res.json();
       console.log(data);
       setAccessToken(data.access);
-      setLogInStatus(true);
+      if (accessToken) {
+        setLogInStatus(true);
+      }
       setEmail(data.payload.email);
       setEmailId(data.payload.id);
       console.log("User logged in");
@@ -56,7 +58,12 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar email={email} accessToken={accessToken} />
+      <NavBar
+        email={email}
+        accessToken={accessToken}
+        logInStatus={logInStatus}
+        setLogInStatus={setLogInStatus}
+      />
       <Routes>
         <Route
           path="/login"
@@ -92,6 +99,16 @@ function App() {
           element={<Cart itemId={itemId} emailId={emailId} />}
         />
         <Route path="/shipment" element={<Shipment emailId={emailId} />} />
+        <Route
+          path="/userlogo"
+          element={
+            <UserLogo
+              emailRef={emailRef}
+              passwordRef={passwordRef}
+              handleLoginForm={handleLoginForm}
+            />
+          }
+        />
       </Routes>
 
       {/* <SignUp /> */}

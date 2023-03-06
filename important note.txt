@@ -1,0 +1,2 @@
+BUGS
+- need to click login button twice to change navbar
