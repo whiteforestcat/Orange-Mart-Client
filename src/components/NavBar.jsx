@@ -14,7 +14,7 @@ const NavBar = (props) => {
             Home
           </NavLink>
         </li>
-        {props.logInStatus || (
+        {props.email? false: (
           <div>
             <li>
               <NavLink
@@ -95,7 +95,7 @@ const NavBar = (props) => {
             </li>
           </div>
         )}
-        {props.logInStatus && (
+        {props.email && (
           <li>
             <h4>{props.email}</h4>
           </li>
