@@ -18,8 +18,8 @@ const Gallery = (props) => {
   const fetchDisplayIems = async () => {
     const res = await fetch("http://127.0.0.1:5000/api/allitems");
     const data = await res.json();
-    setAllItems(data);
     console.log(data);
+    setAllItems(data);
   };
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const Gallery = (props) => {
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ emailId: props.emailId, itemId: id }),
+        body: JSON.stringify({ emailId: props.emailId, itemId: id, favsId: props.emailId }),
       });
       const data = await res.json();
       console.log(data);
@@ -82,6 +82,7 @@ const Gallery = (props) => {
               <th>desciption</th>
               <th>ingredients</th>
               <th>price ($)</th>
+              <th>stock</th>
               <th>tag</th>
             </tr>
           </thead>
@@ -97,6 +98,7 @@ const Gallery = (props) => {
                   <td>{item.description}</td>
                   <td>{item.ingredients}</td>
                   <td>{item.price}</td>
+                  <td>{item.stock}</td>
                   <td>{item.tag}</td>
                   <td>
                     <button onClick={() => addToFavourites(item.id)}>

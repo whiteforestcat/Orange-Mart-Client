@@ -1,2 +1,4 @@
 BUGS
-- need to click login button twice to change navbar
+- need to click login button twice to change navbar --> try to use navigate
+
+- change image array into an object where key is item.id
