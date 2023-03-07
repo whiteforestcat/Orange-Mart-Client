@@ -7,9 +7,9 @@ const Gallery = (props) => {
   const [cartQuantity, setCartQuantity] = useState();
   const [popUp, setPopUp] = useState(false);
   // const [popUpData, setPopUpData] = useState()
-  const [galleryIndex, setGalleryIndex] = useState();
+  const [arrayIndex, setArrayIndex] = useState();
   const [itemIndex, setItemIndex] = useState();
-  // const galleryIndexRef = useRef()
+  // const arrayIndexRef = useRef()
 
   const handleCartQuantity = (event) => {
     setCartQuantity(event.target.value);
@@ -29,8 +29,8 @@ const Gallery = (props) => {
   const enlarge = (id) => {
     setPopUp(true);
     setItemIndex(id);
-    setGalleryIndex(id - 1);
-    // galleryIndexRef.current = id -1
+    setArrayIndex(id - 1);
+    // arrayIndexRef.current = id -1
   };
 
   const addToFavourites = async (id) => {
@@ -110,14 +110,13 @@ const Gallery = (props) => {
                       id="cart-quantity"
                       value={cartQuantity}
                       onChange={handleCartQuantity}
+                      className="border border-black"
                     />
-                    {/* <button onClick={() => addToCart(item.id)}>
-                      Add to cart
-                    </button> */}
-                    {/* /////////////////////////////// ITEM MODAL ////////////////// */}
-                    <button onClick={() => enlarge(item.id)}>
+                    <button onClick={() => addToCart(item.id)}>
                       Add to cart
                     </button>
+                    {/* /////////////////////////////// ITEM MODAL ////////////////// */}
+                    <button onClick={() => enlarge(item.id)}>Pop Up</button>
                     {/* <ItemModal itemId={item.id} itemName={item.name} itemDescription={item.description} itemIngredients={item.ingredients} itemPrice={item.price} imageIndex={index}/> */}
                     {/* <div
                       className={popUp ? "model open" : "model"}
@@ -145,14 +144,20 @@ const Gallery = (props) => {
           return <div></div>;
         })} */}
       {/* {<NewFav itemId={itemId}/>} */}
-      <div
-        className={popUp ? "model open" : "model"}
-        onClick={() => setPopUp(false)}
-      >
+      <div className={popUp ? "model open" : "model"}>
         {allItems && (
           <div>
-            <img src={galleryImage[galleryIndex]} />
-            {galleryIndex !== undefined ? allItems[galleryIndex].name : 1111}
+            <button onClick={() => setPopUp(false)}>Exit</button>
+            <img src={galleryImage[arrayIndex]} />
+            {arrayIndex !== undefined ? allItems[arrayIndex].name : 11111}
+            <input
+              type="text"
+              id="cart-quantity"
+              value={cartQuantity}
+              onChange={handleCartQuantity}
+              className="border border-black"
+            />
+            <button onClick={() => addToCart(itemIndex)}>Add to cart</button>
           </div>
         )}
       </div>
