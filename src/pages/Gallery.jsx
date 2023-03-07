@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-// import NewFav from "./Favourites";
-// import test from "../assets/images/test.png"
 import { galleryImage } from "../image";
+import ItemModal from "./ItemModal";
 
 const Gallery = (props) => {
   const [allItems, setAllItems] = useState();
   const [cartQuantity, setCartQuantity] = useState();
+  const [popUp, setPopUp] = useState(false);
+  // const [popUpData, setPopUpData] = useState()
+  const [galleryIndex, setGalleryIndex] = useState()
+  // let galleryIndex
 
   const handleCartQuantity = (event) => {
     setCartQuantity(event.target.value);
@@ -22,27 +25,11 @@ const Gallery = (props) => {
     fetchDisplayIems();
   }, []);
 
-  // if (allItems) {
-  //     allItems.map((item) => {
-  //       return console.log(item)
-  //     });
-  // }
 
-  //   const addToFav = async () => {
-  //     const res = await fetch("http://127.0.0.1:5000/api/addtofavourites", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-type": "application/json",
-  //       },
-  //       body: JSON
-  //         .stringify
-  //         ///////////////// BODY ///////////////////////////
-  //         (),
-  //     });
-  //     const data = await res.json();
-  //     setAllItems(data);
-  //     console.log(data);
-  //   };
+  const enlarge = (id) => {
+    setPopUp(true);
+    setGalleryIndex(id - 1)
+  };
 
   const addToFavourites = async (id) => {
     try {
@@ -81,7 +68,7 @@ const Gallery = (props) => {
   };
 
   return (
-    <div>
+    <>
       <h1>GALLERY</h1>
       {allItems && (
         <table>
@@ -122,9 +109,25 @@ const Gallery = (props) => {
                       value={cartQuantity}
                       onChange={handleCartQuantity}
                     />
-                    <button onClick={() => addToCart(item.id)}>
+                    {/* <button onClick={() => addToCart(item.id)}>
                       Add to cart
-                    </button>
+                    </button> */}
+                    {/* /////////////////////////////// ITEM MODAL ////////////////// */}
+                    <button onClick={() => enlarge(item.id)}>Add to cart</button>
+                    {/* <ItemModal itemId={item.id} itemName={item.name} itemDescription={item.description} itemIngredients={item.ingredients} itemPrice={item.price} imageIndex={index}/> */}
+                    {/* <div
+                      className={popUp ? "model open" : "model"}
+                      onClick={() => setPopUp(false)}
+                    >
+                      <p>{item.id}</p>
+                      <p>{item.name}</p>
+                      <img src={galleryImage[item.id]} alt="" />
+                      {item.id}
+                      <p>{item.description}</p>
+                      <p>{item.ingredients}</p>
+                      <p>{item.price}</p>
+                      <p>{item.tag}</p>
+                    </div> */}
                   </td>
                 </tr>
               );
@@ -132,12 +135,38 @@ const Gallery = (props) => {
           </tbody>
         </table>
       )}
+      
       {/* {allItems &&
         allItems.map((item) => {
           return <div></div>;
         })} */}
       {/* {<NewFav itemId={itemId}/>} */}
-    </div>
+      <div
+        className={popUp ? "model open" : "model"}
+        onClick={() => setPopUp(false)}
+      >
+        <div>hello!</div>
+        {allItems && (
+          <div>
+            {allItems.map((popUp, index) => {
+              return (
+                <tr>
+                  {/* <td>{popUp.id}</td>
+                  <td>{popUp.name}</td> */}
+                  <td>
+                    <img src={galleryImage[galleryIndex]} alt="" />
+                  </td>
+                  {/* <td>{popUp.description}</td>
+                  <td>{popUp.ingredients}</td>
+                  <td>{popUp.price}</td>
+                  <td>{popUp.tag}</td> */}
+                </tr>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
