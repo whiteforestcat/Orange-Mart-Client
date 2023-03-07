@@ -5,11 +5,11 @@ import { galleryImage } from "../image";
 
 const Gallery = (props) => {
   const [allItems, setAllItems] = useState();
-  const [cartQuantity, setCartQuantity] = useState()
+  const [cartQuantity, setCartQuantity] = useState();
 
   const handleCartQuantity = (event) => {
-    setCartQuantity(event.target.value)
-  }
+    setCartQuantity(event.target.value);
+  };
 
   const fetchDisplayIems = async () => {
     const res = await fetch("http://127.0.0.1:5000/api/allitems");
@@ -62,32 +62,36 @@ const Gallery = (props) => {
 
   const addToCart = async (id) => {
     try {
-        const res = await fetch("http://127.0.0.1:5000/api/addtocart", {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify({emailId: props.emailId, itemId: id, quantity: cartQuantity})
-        });
-        const data = await res.json()
-        console.log(data)
+      const res = await fetch("http://127.0.0.1:5000/api/addtocart", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          emailId: props.emailId,
+          itemId: id,
+          quantity: cartQuantity,
+        }),
+      });
+      const data = await res.json();
+      console.log(data);
     } catch (error) {
-        console.log("POST FETCH ADD TO USER CART FAIL", error.message);
+      console.log("POST FETCH ADD TO USER CART FAIL", error.message);
     }
   };
 
   return (
     <div>
       <h1>GALLERY</h1>
-      <img src={galleryImage[0].image} alt="" />
       {allItems && (
         <table>
           <thead>
             <tr>
               <th>id</th>
               <th>name</th>
-              <th>picture</th>
+              <th>image</th>
               <th>desciption</th>
+              <th>ingredients</th>
               <th>price ($)</th>
               <th>tag</th>
             </tr>
@@ -98,8 +102,11 @@ const Gallery = (props) => {
                 <tr key={item.id}>
                   <td>{item.id}</td>
                   <td>{item.name}</td>
-                  <td></td>
+                  <td>
+                    <img src={galleryImage[index]} alt="" />
+                  </td>
                   <td>{item.description}</td>
+                  <td>{item.ingredients}</td>
                   <td>{item.price}</td>
                   <td>{item.tag}</td>
                   <td>
