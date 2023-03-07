@@ -40,7 +40,7 @@ const Favourites = (props) => {
 
   return (
     <div>
-      <h2>FAVOURITES</h2>
+      <h2 className="text-7xl">FAVOURITES</h2>
       <h3>email id: {props.emailId}</h3>
       <h3>item id: {props.itemId}</h3>
       <table>

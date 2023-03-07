@@ -40,7 +40,11 @@ const Gallery = (props) => {
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ emailId: props.emailId, itemId: id, favsId: props.emailId }),
+        body: JSON.stringify({
+          emailId: props.emailId,
+          itemId: id,
+          favsId: props.emailId,
+        }),
       });
       const data = await res.json();
       console.log(data);
@@ -60,6 +64,7 @@ const Gallery = (props) => {
           emailId: props.emailId,
           itemId: id,
           quantity: cartQuantity,
+          cartId: props.emailId,
         }),
       });
       const data = await res.json();
@@ -71,7 +76,7 @@ const Gallery = (props) => {
 
   return (
     <>
-      <h1>GALLERY</h1>
+      <h1 className="text-7xl">GALLERY</h1>
       {allItems && (
         <table>
           <thead>

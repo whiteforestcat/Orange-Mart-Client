@@ -44,7 +44,7 @@ const Cart = (props) => {
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify({ emailId: props.emailId, cartId: id }),
+      body: JSON.stringify({ emailId: props.emailId, cartId: id, shipmentId: props.emailId }),
     });
     const data = await res.json();
     console.log(data);
@@ -53,7 +53,7 @@ const Cart = (props) => {
 
   return (
     <div>
-      <h2>CART</h2>
+      <h2 className="text-7xl">CART</h2>
       <h3>email id: {props.emailId}</h3>
       <h3>item id: {props.itemId}</h3>
       <table>

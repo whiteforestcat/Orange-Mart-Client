@@ -25,7 +25,7 @@ const AdminAccess = (props) => {
 
   return (
     <div>
-      <h1>ADMIN PAGE</h1>
+      <h1 className="text-7xl">ADMIN PAGE</h1>
       <button onClick={handleClick}>View All Existing Accounts</button>
     </div>
   );

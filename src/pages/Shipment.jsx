@@ -39,7 +39,7 @@ const Shipment = (props) => {
 
   return (
     <div>
-      <h2>Shipment</h2>
+      <h2 className="text-7xl">Shipment</h2>
       <table>
         <thead>
           <tr>
@@ -57,7 +57,9 @@ const Shipment = (props) => {
               );
             })}
           <td>
-            <button onClick={() => deleteShipment(shipment[0].cartid)}>DELETE</button>
+            <button onClick={() => deleteShipment(shipment[0].cartid)}>
+              DELETE
+            </button>
           </td>
         </tbody>
       </table>
