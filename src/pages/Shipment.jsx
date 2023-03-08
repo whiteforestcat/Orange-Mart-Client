@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -21,6 +21,10 @@ const Shipment = (props) => {
       console.log(error.message);
     }
   };
+
+  useEffect(() => {
+    getShipment()
+  }, [])
 
   const deleteShipment = async (id) => {
     try {
@@ -56,7 +60,7 @@ const Shipment = (props) => {
           </tr>
         </thead>
         <tbody>
-          <button onClick={() => getShipment()}>All Shipment</button>
+          {/* <button onClick={() => getShipment()}>All Shipment</button> */}
           {shipment &&
             shipment.map((item, index) => {
               return (

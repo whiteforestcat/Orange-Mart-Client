@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Gallery = (props) => {
+  const [shippedStatus, setShipppedStatus] = useState(false)
   const [allItems, setAllItems] = useState();
   const [cartQuantity, setCartQuantity] = useState();
   const [popUp, setPopUp] = useState(false);
@@ -128,10 +129,24 @@ const Gallery = (props) => {
 
   // }, [])
 
+ useEffect(() => {
+   const data = JSON.parse(localStorage.getItem("GA_CAPSTONE"));
+   if (data !== null) {
+     setShipppedStatus(data);
+   }
+   console.log(data)
+ }, []);
+
+ useEffect(() => {
+   // console.log("shippedStatus", shippedStatus)
+   localStorage.setItem("GA_CAPSTONE", JSON.stringify(shippedStatus));
+ }, [shippedStatus]);
+
   return (
     <>
       <ToastContainer />
       <h1 className="text-7xl">GALLERY</h1>
+      <button onClick={() => setShipppedStatus(true)}>test</button>
       {/* ///////////////////// TEST TOAST /////////////////////// */}
       {/* <div>
         <button onClick={showToastMessage}>Notify</button>

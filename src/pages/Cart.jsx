@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -23,6 +23,10 @@ const Cart = (props) => {
       console.log(error.message);
     }
   };
+
+  useEffect(() => {
+    getCart();
+  }, []);
 
   const deleteCart = async (id) => {
     try {
@@ -106,6 +110,28 @@ const Cart = (props) => {
     setShipppedStatus(true);
   };
 
+  // useEffect(() => {
+  //   const data = window.localStorage.getItem("GA_CAPSTONE");
+  //   // console.log("shippedStatus:", JSON.parse(data).shippedStatus);
+  //   if (data !== null) {
+  //     setShipppedStatus(JSON.parse(data));
+  //   }
+  //   console.log("byebyeybe");
+  // }, []);
+
+  useEffect(() => {
+    const data = window.localStorage.getItem("GA_CAPSTONE");
+    console.log("data", data);
+    if (data !== null) {
+      setShipppedStatus(JSON.parse(data));
+    }
+  }, []);
+
+  useEffect(() => {
+    // console.log("shippedStatus", shippedStatus)
+    window.localStorage.setItem("GA_CAPSTONE", JSON.stringify(shippedStatus));
+  }, [shippedStatus]);
+
   return (
     <div>
       <ToastContainer />
@@ -120,7 +146,7 @@ const Cart = (props) => {
           </tr>
         </thead>
         <tbody>
-          <button onClick={() => getCart()}>All Cart</button>
+          {/* <button onClick={() => getCart()}>All Cart</button> */}
           {shippedStatus ||
             (cart &&
               cart.map((item, index) => {

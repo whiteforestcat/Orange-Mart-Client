@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -21,6 +21,10 @@ const Favourites = (props) => {
       console.log(error.message);
     }
   };
+
+  useEffect(() => {
+    getFavourites()
+  }, [])
 
   const deleteFav = async (id) => {
     // console.log(id);
@@ -60,7 +64,7 @@ const Favourites = (props) => {
           </tr>
         </thead>
         <tbody>
-          <button onClick={() => getFavourites()}>All Favourites</button>
+          {/* <button onClick={() => getFavourites()}>All Favourites</button> */}
           {favourites &&
             favourites.map((item, index) => {
               return (
