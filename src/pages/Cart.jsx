@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { galleryImage } from "../image";
 
 const Cart = (props) => {
   const [cart, setCart] = useState();
@@ -142,6 +143,7 @@ const Cart = (props) => {
         <thead>
           <tr>
             <th>Item</th>
+            <th>Image</th>
             <th>Quantity</th>
           </tr>
         </thead>
@@ -153,6 +155,11 @@ const Cart = (props) => {
                 return (
                   <tr key={index}>
                     <td>{item.cart_item}</td>
+                    <td>
+                      <td>
+                        <img src={galleryImage[item.itemid - 1]} alt="" />
+                      </td>
+                    </td>
                     <td>{item.quantity}</td>
                     <td>
                       <button
