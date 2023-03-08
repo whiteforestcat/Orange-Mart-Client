@@ -158,9 +158,7 @@ const Cart = (props) => {
                   <tr key={index}>
                     <td>{item.cart_item}</td>
                     <td>
-                      <td>
-                        <img src={galleryImage[item.itemid - 1]} alt="" />
-                      </td>
+                      <img src={galleryImage[item.itemid - 1]} alt="" />
                     </td>
                     <td>{item.quantity}</td>
                     <td>
@@ -190,7 +188,9 @@ const Cart = (props) => {
               }))}
           <NavLink to="/payment">
             {/* <button onClick={() => console.log("test payment")}>PAY - redirect</button> */}
-            <button onClick={() => addToShipment(cart[0].cartid)}>PROCEED TO PAY</button>
+            <button onClick={() => addToShipment(cart[0].cartid)}>
+              PROCEED TO PAY
+            </button>
           </NavLink>
         </tbody>
       </table>

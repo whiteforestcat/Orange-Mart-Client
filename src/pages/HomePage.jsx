@@ -10,9 +10,9 @@ const HomePage = (props) => {
         <input type="text" id="logInEmail" ref={props.emailRef} />
         <label htmlFor="logInPassword">Password</label>
         <input type="text" id="logInPassword" ref={props.passwordRef} />
-        {/* <NavLink to="/">
-          <button type="submit">Submit</button>
-        </NavLink> */}
+        <NavLink to="/">
+          <button type="submit">Submit redirect</button>
+        </NavLink>
         <button type="submit">Submit</button>
       </form>
     </div>

@@ -9,7 +9,6 @@ export const galleryImage = [
   "https://media.nedigital.sg/fairprice/fpol/media/images/product/L/13073726_L1_20221009.jpg?q=60",
   "https://media.nedigital.sg/fairprice/fpol/media/images/product/L/12704741_L1_20221025.jpg?q=60",
   "https://media.nedigital.sg/fairprice/fpol/media/images/product/L/13083570_L1_20230130.jpg?q=60",
-  "https://media.nedigital.sg/fairprice/images/3c9cd6bd-a057-4f0a-a16f-79e1dcf7345c/10451542F.jpg?q=60",
   "https://media.nedigital.sg/fairprice/fpol/media/images/product/L/13109359_L1_20230203.jpg?q=60",
   "https://media.nedigital.sg/fairprice/fpol/media/images/product/L/13023974_L1_20221011.jpg?q=60",
   "https://media.nedigital.sg/fairprice/fpol/media/images/product/L/55302_L1_20210210.jpg?q=60",

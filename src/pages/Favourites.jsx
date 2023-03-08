@@ -24,8 +24,8 @@ const Favourites = (props) => {
   };
 
   useEffect(() => {
-    getFavourites()
-  }, [])
+    getFavourites();
+  }, []);
 
   const deleteFav = async (id) => {
     // console.log(id);
@@ -72,7 +72,9 @@ const Favourites = (props) => {
               return (
                 <tr key={index}>
                   <td>{item.favs_item}</td>
-                  <td><img src={galleryImage[item.itemid-1]} alt="" /></td>
+                  <td>
+                    <img src={galleryImage[item.itemid - 1]} alt="" />
+                  </td>
                   <td>
                     <button onClick={() => deleteFav(item.itemid)}>
                       DELETE
