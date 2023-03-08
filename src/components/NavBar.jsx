@@ -99,11 +99,6 @@ const NavBar = (props) => {
         )}
         {props.email && (
           <li>
-            <h4>{props.email}</h4>
-          </li>
-        )}
-        {props.email && (
-          <li>
             <li>
               <NavLink
                 to="/usersettings"
@@ -112,6 +107,11 @@ const NavBar = (props) => {
                 User Settings
               </NavLink>
             </li>
+          </li>
+        )}
+        {props.email && (
+          <li>
+            <h4>{props.email}</h4>
           </li>
         )}
       </nav>
