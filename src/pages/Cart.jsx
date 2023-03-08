@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { galleryImage } from "../image";
+import { NavLink } from "react-router-dom";
+import Payment from "../components/Payment";
 
 const Cart = (props) => {
   const [cart, setCart] = useState();
@@ -186,7 +188,10 @@ const Cart = (props) => {
                   </tr>
                 );
               }))}
-          <button onClick={() => addToShipment(cart[0].cartid)}>PAY</button>
+          <NavLink to="/payment">
+            {/* <button onClick={() => console.log("test payment")}>PAY - redirect</button> */}
+            <button onClick={() => addToShipment(cart[0].cartid)}>PROCEED TO PAY</button>
+          </NavLink>
         </tbody>
       </table>
     </div>

@@ -13,6 +13,7 @@ import Cart from "./pages/Cart";
 import Shipment from "./pages/Shipment";
 import UserLogo from "./pages/UserLogo";
 import UserSettings from "./components/UserSettings";
+import Payment from "./components/Payment";
 
 function App() {
   const emailRef = useRef();
@@ -119,7 +120,7 @@ function App() {
           }
         />
         <Route
-          path="usersettings"
+          path="/usersettings"
           element={
             <UserSettings
               emailRef={emailRef}
@@ -128,6 +129,7 @@ function App() {
             />
           }
         />
+        <Route path="/payment" element={<Payment/>}/>
       </Routes>
 
       {/* <SignUp /> */}
