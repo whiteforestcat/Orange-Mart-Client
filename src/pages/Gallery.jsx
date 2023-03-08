@@ -11,7 +11,7 @@ const Gallery = (props) => {
   // const [popUpData, setPopUpData] = useState()
   const [arrayIndex, setArrayIndex] = useState();
   const [itemIndex, setItemIndex] = useState();
-  const [counter, setCounter] = useState()
+  const [counter, setCounter] = useState(0)
   // const arrayIndexRef = useRef()
 
   // const addToFavMessage = (data) => {
