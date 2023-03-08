@@ -11,6 +11,7 @@ const Gallery = (props) => {
   // const [popUpData, setPopUpData] = useState()
   const [arrayIndex, setArrayIndex] = useState();
   const [itemIndex, setItemIndex] = useState();
+  const [counter, setCounter] = useState()
   // const arrayIndexRef = useRef()
 
   // const addToFavMessage = (data) => {
@@ -35,7 +36,8 @@ const Gallery = (props) => {
 
   useEffect(() => {
     fetchDisplayIems();
-  }, []);
+    console.log("test")
+  }, [counter]);
 
   const enlarge = (id) => {
     setPopUp(true);
@@ -89,6 +91,7 @@ const Gallery = (props) => {
           cartId: props.emailId,
         }),
       });
+      setCounter(counter + 1)
       const data = await res.json();
       console.log(data);
 
