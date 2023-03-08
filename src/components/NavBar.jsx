@@ -51,14 +51,14 @@ const NavBar = (props) => {
 
         {props.email && (
           <div className="flex">
-            <li>
+            {/* <li>
               <NavLink
                 to="/newmessage"
                 className={(navData) => (navData.isActive ? styles.active : "")}
               >
                 New Message
               </NavLink>
-            </li>
+            </li> */}
             {props.admin && (
               <li>
                 <NavLink
@@ -104,16 +104,16 @@ const NavBar = (props) => {
                 to="/usersettings"
                 className={(navData) => (navData.isActive ? styles.active : "")}
               >
-                User Settings
+                {props.email}
               </NavLink>
             </li>
           </li>
         )}
-        {props.email && (
+        {/* {props.email && (
           <li>
             <h4>{props.email}</h4>
           </li>
-        )}
+        )} */}
       </nav>
       {/* <h4>{props.email}</h4> */}
     </header>
