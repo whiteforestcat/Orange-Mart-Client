@@ -181,33 +181,36 @@ const Gallery = (props) => {
                   <td>{item.price}</td>
                   <td>{item.stock}</td>
                   <td>{item.tag}</td>
-                  <td>
-                    <button
-                      onClick={() => {
-                        addToFavourites(item.id);
-                        // addToFavMessage();
-                      }}
-                    >
-                      {/* <ToastContainer /> */}
-                      Add to Favourites
-                    </button>
-                  </td>
-                  <td>
-                    <label htmlFor="cart-quantity"></label>
-                    <input
-                      type="text"
-                      id="cart-quantity"
-                      value={cartQuantity}
-                      onChange={handleCartQuantity}
-                      className="border border-black"
-                    />
-                    <button onClick={() => addToCart(item.id)}>
-                      Add to cart
-                    </button>
-                    {/* /////////////////////////////// ITEM MODAL ////////////////// */}
-                    <button onClick={() => enlarge(item.id)}>Pop Up</button>
-                    {/* <ItemModal itemId={item.id} itemName={item.name} itemDescription={item.description} itemIngredients={item.ingredients} itemPrice={item.price} imageIndex={index}/> */}
-                    {/* <div
+                  {props.email && (
+                    <td>
+                      <button
+                        onClick={() => {
+                          addToFavourites(item.id);
+                          // addToFavMessage();
+                        }}
+                      >
+                        {/* <ToastContainer /> */}
+                        Add to Favourites
+                      </button>
+                    </td>
+                  )}
+                  {props.email && (
+                    <td>
+                      <label htmlFor="cart-quantity"></label>
+                      <input
+                        type="text"
+                        id="cart-quantity"
+                        value={cartQuantity}
+                        onChange={handleCartQuantity}
+                        className="border border-black"
+                      />
+                      <button onClick={() => addToCart(item.id)}>
+                        Add to cart
+                      </button>
+                      {/* /////////////////////////////// ITEM MODAL ////////////////// */}
+                      <button onClick={() => enlarge(item.id)}>Pop Up</button>
+                      {/* <ItemModal itemId={item.id} itemName={item.name} itemDescription={item.description} itemIngredients={item.ingredients} itemPrice={item.price} imageIndex={index}/> */}
+                      {/* <div
                       className={popUp ? "model open" : "model"}
                       onClick={() => setPopUp(false)}
                     >
@@ -220,7 +223,8 @@ const Gallery = (props) => {
                       <p>{item.price}</p>
                       <p>{item.tag}</p>
                     </div> */}
-                  </td>
+                    </td>
+                  )}
                 </tr>
               );
             })}

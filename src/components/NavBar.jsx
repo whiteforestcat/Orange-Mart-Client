@@ -14,7 +14,9 @@ const NavBar = (props) => {
             Home
           </NavLink>
         </li>
-        {props.email? false: (
+        {props.email ? (
+          false
+        ) : (
           <div>
             <li>
               <NavLink
@@ -98,6 +100,18 @@ const NavBar = (props) => {
         {props.email && (
           <li>
             <h4>{props.email}</h4>
+          </li>
+        )}
+        {props.email && (
+          <li>
+            <li>
+              <NavLink
+                to="/usersettings"
+                className={(navData) => (navData.isActive ? styles.active : "")}
+              >
+                User Settings
+              </NavLink>
+            </li>
           </li>
         )}
       </nav>

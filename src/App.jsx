@@ -12,6 +12,7 @@ import Favourites from "./pages/Favourites";
 import Cart from "./pages/Cart";
 import Shipment from "./pages/Shipment";
 import UserLogo from "./pages/UserLogo";
+import UserSettings from "./components/UserSettings";
 
 function App() {
   const emailRef = useRef();
@@ -20,7 +21,7 @@ function App() {
   const [accessToken, setAccessToken] = useState("");
   const [email, setEmail] = useState(""); // paylaod email is stored here
   const [emailId, setEmailId] = useState(); // payload email id is stored here
-  const [admin, setAdmin] = useState()
+  const [admin, setAdmin] = useState();
   const [itemId, setItemId] = useState(); // item id in gallery is stored here
 
   let particulars = {};
@@ -42,7 +43,7 @@ function App() {
       }
       setEmail(data.payload.email);
       setEmailId(data.payload.id);
-      setAdmin(data.adminStatus)
+      setAdmin(data.adminStatus);
       console.log("User logged in");
     } catch (error) {
       console.log(error);
@@ -90,7 +91,12 @@ function App() {
         <Route
           path="/"
           element={
-            <Gallery itemId={itemId} setItemId={setItemId} emailId={emailId} />
+            <Gallery
+              itemId={itemId}
+              setItemId={setItemId}
+              emailId={emailId}
+              email={email}
+            />
           }
         />
         <Route
@@ -109,6 +115,16 @@ function App() {
               emailRef={emailRef}
               passwordRef={passwordRef}
               handleLoginForm={handleLoginForm}
+            />
+          }
+        />
+        <Route
+          path="usersettings"
+          element={
+            <UserSettings
+              emailRef={emailRef}
+              passwordRef={passwordRef}
+              emailId={emailId}
             />
           }
         />
