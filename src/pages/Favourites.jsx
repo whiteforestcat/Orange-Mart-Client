@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Favourites = (props) => {
   const [favourites, setFavourites] = useState([]);
@@ -33,6 +35,13 @@ const Favourites = (props) => {
       const data = await res.json();
       console.log(data);
       setFavourites(favourites.filter((item) => item.itemid !== id));
+
+      if (data === "favourite item successfully removed") {
+        console.log("hello");
+        toast.success(data, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -40,6 +49,7 @@ const Favourites = (props) => {
 
   return (
     <div>
+      <ToastContainer />
       <h2 className="text-7xl">FAVOURITES</h2>
       <h3>email id: {props.emailId}</h3>
       <h3>item id: {props.itemId}</h3>

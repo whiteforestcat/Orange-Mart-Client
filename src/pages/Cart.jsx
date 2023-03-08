@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Cart = (props) => {
   const [cart, setCart] = useState();
@@ -34,6 +36,13 @@ const Cart = (props) => {
       const data = await res.json();
       console.log(data);
       setCart(cart.filter((item) => item.itemid !== id));
+
+      if (data === "cart item successfully removed") {
+        toast.success(data, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+
     } catch (error) {
       console.log(error.message);
     }
@@ -50,6 +59,17 @@ const Cart = (props) => {
       });
       const data = await res.json()
       console.log(data)
+
+      if (data === "cart updated") {
+        toast.success(data, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+      if (data === "please enter quantity") {
+        toast.warning(data, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
     } catch (error) {
       console.log(error.message)
     }
@@ -74,6 +94,7 @@ const Cart = (props) => {
 
   return (
     <div>
+      <ToastContainer/>
       <h2 className="text-7xl">CART</h2>
       <h3>email id: {props.emailId}</h3>
       <h3>item id: {props.itemId}</h3>

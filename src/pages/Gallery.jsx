@@ -13,14 +13,14 @@ const Gallery = (props) => {
   const [itemIndex, setItemIndex] = useState();
   // const arrayIndexRef = useRef()
 
-  const addToFavMessage = (data) => {
-    toast.success(data, {
-      position: toast.POSITION.TOP_RIGHT,
-    });
-    toast.error("Error Notification !", {
-      position: toast.POSITION.TOP_RIGHT,
-    });
-  };
+  // const addToFavMessage = (data) => {
+  //   toast.success(data, {
+  //     position: toast.POSITION.TOP_RIGHT,
+  //   });
+  //   toast.error("Error Notification !", {
+  //     position: toast.POSITION.TOP_RIGHT,
+  //   });
+  // };
 
   const handleCartQuantity = (event) => {
     setCartQuantity(event.target.value);
@@ -60,12 +60,12 @@ const Gallery = (props) => {
       const data = await res.json();
       console.log(data);
 
-      if (data == "item added to favourites") {
+      if (data === "item added to favourites") {
         toast.success(data, {
           position: toast.POSITION.TOP_RIGHT,
         });
       }
-      if (data == "item already in favourites") {
+      if (data === "item already in favourites") {
         toast.warning(data, {
           position: toast.POSITION.TOP_RIGHT,
         });
@@ -91,6 +91,18 @@ const Gallery = (props) => {
       });
       const data = await res.json();
       console.log(data);
+
+      if (data === "item added to cart") {
+        toast.success(data, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+      if (data === "item already in cart") {
+        toast.warning(data, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+
     } catch (error) {
       console.log("POST FETCH ADD TO USER CART FAIL", error.message);
     }
@@ -111,8 +123,8 @@ const Gallery = (props) => {
 
   return (
     <>
-      <h1 className="text-7xl">GALLERY</h1>
       <ToastContainer />
+      <h1 className="text-7xl">GALLERY</h1>
       {/* ///////////////////// TEST TOAST /////////////////////// */}
       {/* <div>
         <button onClick={showToastMessage}>Notify</button>
