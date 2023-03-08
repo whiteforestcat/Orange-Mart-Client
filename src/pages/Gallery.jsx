@@ -102,6 +102,11 @@ const Gallery = (props) => {
           position: toast.POSITION.TOP_RIGHT,
         });
       }
+      if (data === "please enter quantity") {
+        toast.warning(data, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
 
     } catch (error) {
       console.log("POST FETCH ADD TO USER CART FAIL", error.message);
