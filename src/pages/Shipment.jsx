@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Shipment = (props) => {
   const [shipment, setShipment] = useState();
@@ -31,7 +33,13 @@ const Shipment = (props) => {
       });
       const data = await res.json();
       console.log(data);
-      setShipment(shipment.filter((item, index) => item.cardid === index))
+      setShipment(shipment.filter((item, index) => item.cardid === index));
+
+      if (data === "shipment cancelled") {
+        toast.success(data, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -39,6 +47,7 @@ const Shipment = (props) => {
 
   return (
     <div>
+      <ToastContainer />
       <h2 className="text-7xl">Shipment</h2>
       <table>
         <thead>

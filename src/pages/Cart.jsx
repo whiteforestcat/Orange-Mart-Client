@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 const Cart = (props) => {
   const [cart, setCart] = useState();
   const [shippedStatus, setShipppedStatus] = useState(false);
-  const [newQuantity, setNewQuantity] = useState()
+  const [newQuantity, setNewQuantity] = useState();
 
   const getCart = async () => {
     try {
@@ -42,7 +42,6 @@ const Cart = (props) => {
           position: toast.POSITION.TOP_RIGHT,
         });
       }
-
     } catch (error) {
       console.log(error.message);
     }
@@ -53,12 +52,16 @@ const Cart = (props) => {
       const res = await fetch("http://127.0.0.1:5000/api/updatecart", {
         method: "PATCH",
         headers: {
-          "Content-type": "application/json"
+          "Content-type": "application/json",
         },
-        body: JSON.stringify({newQuantity: newQuantity, cartId: cartid, itemId: itemid})
+        body: JSON.stringify({
+          newQuantity: newQuantity,
+          cartId: cartid,
+          itemId: itemid,
+        }),
       });
-      const data = await res.json()
-      console.log(data)
+      const data = await res.json();
+      console.log(data);
 
       if (data === "cart updated") {
         toast.success(data, {
@@ -71,13 +74,13 @@ const Cart = (props) => {
         });
       }
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
-  }
+  };
 
   const handleUpdateCart = (e) => {
-    setNewQuantity(e.target.value)
-  }
+    setNewQuantity(e.target.value);
+  };
 
   const addToShipment = async (id) => {
     const res = await fetch("http://127.0.0.1:5000/api/addtoshipment", {
@@ -85,16 +88,27 @@ const Cart = (props) => {
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify({ emailId: props.emailId, cartId: id, shipmentId: props.emailId }),
+      body: JSON.stringify({
+        emailId: props.emailId,
+        cartId: id,
+        shipmentId: props.emailId,
+      }),
     });
     const data = await res.json();
     console.log(data);
+
+    if (data === "item sent for shipment") {
+      toast.success(data, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+
     setShipppedStatus(true);
   };
 
   return (
     <div>
-      <ToastContainer/>
+      <ToastContainer />
       <h2 className="text-7xl">CART</h2>
       <h3>email id: {props.emailId}</h3>
       <h3>item id: {props.itemId}</h3>
@@ -115,13 +129,24 @@ const Cart = (props) => {
                     <td>{item.cart_item}</td>
                     <td>{item.quantity}</td>
                     <td>
-                      <button onClick={() => deleteCart(item.itemid)} className="border">
+                      <button
+                        onClick={() => deleteCart(item.itemid)}
+                        className="border"
+                      >
                         DELETE
                       </button>
                     </td>
                     <td>
-                      <input type="text" value={newQuantity} onChange={handleUpdateCart} className="border"/>
-                      <button onClick={() => updateCart(item.cartid, item.itemid)} className="border">
+                      <input
+                        type="text"
+                        value={newQuantity}
+                        onChange={handleUpdateCart}
+                        className="border"
+                      />
+                      <button
+                        onClick={() => updateCart(item.cartid, item.itemid)}
+                        className="border"
+                      >
                         UPDATE CART
                       </button>
                     </td>

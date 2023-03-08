@@ -107,7 +107,6 @@ const Gallery = (props) => {
           position: toast.POSITION.TOP_RIGHT,
         });
       }
-
     } catch (error) {
       console.log("POST FETCH ADD TO USER CART FAIL", error.message);
     }
