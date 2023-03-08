@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { galleryImage } from "../image";
 import ItemModal from "./ItemModal";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Gallery = (props) => {
   const [allItems, setAllItems] = useState();
@@ -10,6 +12,15 @@ const Gallery = (props) => {
   const [arrayIndex, setArrayIndex] = useState();
   const [itemIndex, setItemIndex] = useState();
   // const arrayIndexRef = useRef()
+
+  const addToFavMessage = (data) => {
+    toast.success(data, {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+    toast.error("Error Notification !", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
 
   const handleCartQuantity = (event) => {
     setCartQuantity(event.target.value);
@@ -48,6 +59,17 @@ const Gallery = (props) => {
       });
       const data = await res.json();
       console.log(data);
+
+      if (data == "item added to favourites") {
+        toast.success(data, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+      if (data == "item already in favourites") {
+        toast.warning(data, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
     } catch (error) {
       console.log("POST FETCH ADD TO USER FAVOURITES FAIL", error.message);
     }
@@ -74,9 +96,29 @@ const Gallery = (props) => {
     }
   };
 
+  // useEffect(() => {
+  //   toast.promise(addToFavourites, {
+  //     pending: "Adding to Favourites",
+  //     success: "Added to Favourites!",
+  //     error: "Error"
+  //   });
+  // }, [itemIndex]);
+
+  // useEffect(() => {
+  //   addToFavMessage()
+
+  // }, [])
+
   return (
     <>
       <h1 className="text-7xl">GALLERY</h1>
+      <ToastContainer />
+      {/* ///////////////////// TEST TOAST /////////////////////// */}
+      {/* <div>
+        <button onClick={showToastMessage}>Notify</button>
+        <ToastContainer/>
+      </div> */}
+
       {allItems && (
         <table>
           <thead>
@@ -106,7 +148,13 @@ const Gallery = (props) => {
                   <td>{item.stock}</td>
                   <td>{item.tag}</td>
                   <td>
-                    <button onClick={() => addToFavourites(item.id)}>
+                    <button
+                      onClick={() => {
+                        addToFavourites(item.id);
+                        // addToFavMessage();
+                      }}
+                    >
+                      {/* <ToastContainer /> */}
                       Add to Favourites
                     </button>
                   </td>
