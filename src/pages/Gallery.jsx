@@ -4,25 +4,25 @@ import ItemModal from "./ItemModal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Typography,
+  Avatar,
+  Tooltip,
+} from "@material-tailwind/react";
+
 const Gallery = (props) => {
-  const [shippedStatus, setShipppedStatus] = useState(false)
+  const [shippedStatus, setShipppedStatus] = useState(false);
   const [allItems, setAllItems] = useState();
   const [cartQuantity, setCartQuantity] = useState();
   const [popUp, setPopUp] = useState(false);
   // const [popUpData, setPopUpData] = useState()
   const [arrayIndex, setArrayIndex] = useState();
   const [itemIndex, setItemIndex] = useState();
-  const [counter, setCounter] = useState(0)
-  // const arrayIndexRef = useRef()
-
-  // const addToFavMessage = (data) => {
-  //   toast.success(data, {
-  //     position: toast.POSITION.TOP_RIGHT,
-  //   });
-  //   toast.error("Error Notification !", {
-  //     position: toast.POSITION.TOP_RIGHT,
-  //   });
-  // };
+  const [counter, setCounter] = useState(0);
 
   const handleCartQuantity = (event) => {
     setCartQuantity(event.target.value);
@@ -37,14 +37,16 @@ const Gallery = (props) => {
 
   useEffect(() => {
     fetchDisplayIems();
-    console.log("test")
+    console.log("test");
   }, [counter]);
 
   const enlarge = (id) => {
-    setPopUp(true);
-    setItemIndex(id);
-    setArrayIndex(id - 1);
-    // arrayIndexRef.current = id -1
+    if (props.accessToken) {
+      setPopUp(true);
+      setItemIndex(id);
+      setArrayIndex(id - 1);
+      // arrayIndexRef.current = id -1
+    }
   };
 
   const addToFavourites = async (id) => {
@@ -94,7 +96,7 @@ const Gallery = (props) => {
           cartId: props.emailId,
         }),
       });
-      setCounter(counter + 1)
+      setCounter(counter + 1);
       const data = await res.json();
       console.log(data);
 
@@ -131,18 +133,18 @@ const Gallery = (props) => {
 
   // }, [])
 
- useEffect(() => {
-   const data = JSON.parse(localStorage.getItem("GA_CAPSTONE"));
-   if (data !== null) {
-     setShipppedStatus(data);
-   }
-   console.log(data)
- }, []);
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("GA_CAPSTONE"));
+    if (data !== null) {
+      setShipppedStatus(data);
+    }
+    console.log(data);
+  }, []);
 
- useEffect(() => {
-   // console.log("shippedStatus", shippedStatus)
-   localStorage.setItem("GA_CAPSTONE", JSON.stringify(shippedStatus));
- }, [shippedStatus]);
+  useEffect(() => {
+    // console.log("shippedStatus", shippedStatus)
+    localStorage.setItem("GA_CAPSTONE", JSON.stringify(shippedStatus));
+  }, [shippedStatus]);
 
   return (
     <>
@@ -154,8 +156,6 @@ const Gallery = (props) => {
         <button onClick={showToastMessage}>Notify</button>
         <ToastContainer/>
       </div> */}
-
-      
 
       {allItems && (
         <table>
@@ -172,6 +172,38 @@ const Gallery = (props) => {
             </tr>
           </thead>
           <tbody>
+            {allItems.map((item, index) => {
+              return (
+                <div
+                  key={item.id}
+                  onClick={() => enlarge(item.id)}
+                  className=""
+                >
+                  <Card className="max-w-[24rem] overflow-hidden">
+                    <CardHeader
+                      floated={false}
+                      shadow={false}
+                      color="transparent"
+                      className="m-0 rounded-none"
+                    >
+                      <img src={galleryImage[index]} alt="" />
+                    </CardHeader>
+                    <CardBody>
+                      <Typography variant="h4" color="blue-gray">
+                        {item.name}
+                      </Typography>
+                      <Typography
+                        variant="lead"
+                        color="gray"
+                        className="mt-3 font-normal"
+                      >
+                        {item.description}
+                      </Typography>
+                    </CardBody>
+                  </Card>
+                </div>
+              );
+            })}
             {allItems.map((item, index) => {
               return (
                 <tr key={item.id}>
