@@ -56,6 +56,36 @@ const Shipment = (props) => {
     <div>
       <ToastContainer />
       <h2 className="text-7xl">Shipment</h2>
+      {shipment && (
+        <div className="grid gap-2 lg:grid-cols-4">
+          {shipment.map((item, index) => (
+            <div
+              className="w-full rounded-lg shadow-md lg:max-w-sm"
+              key={index}
+            >
+              <div>
+                <img
+                  src={galleryImage[item.itemid - 1]}
+                  alt=""
+                  className="object-cover w-full h-48"
+                />
+                <div className="p-4">
+                  <h4 className="text-xl font-semibold text-blue-600">
+                    {item.cart_item}
+                  </h4>
+                  <p className="mb-2 leading-normal">{item.description}</p>
+                </div>
+              </div>
+              {/* <div className="px-4 py-2 text-sm text-red-500">
+                <button onClick={() => deleteFav(item.itemid)}>DELETE</button>
+              </div> */}
+            </div>
+          ))}
+          <button onClick={() => deleteShipment(shipment[0].cartid)}>
+            DELETE
+          </button>
+        </div>
+      )}
       <table>
         <thead>
           <tr>

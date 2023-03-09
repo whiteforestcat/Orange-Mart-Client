@@ -4,11 +4,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { galleryImage } from "../image";
 import { NavLink } from "react-router-dom";
 import Payment from "../components/Payment";
+import { useNavigate } from "react-router-dom";
 
 const Cart = (props) => {
   const [cart, setCart] = useState();
   const [shippedStatus, setShipppedStatus] = useState(false);
   const [newQuantity, setNewQuantity] = useState();
+
+  const navigate = useNavigate()
 
   const getCart = async () => {
     try {
@@ -107,6 +110,7 @@ const Cart = (props) => {
     });
     const data = await res.json();
     console.log(data);
+    navigate("/payment", { replace: true });
 
     if (data === "item sent for shipment") {
       toast.success(data, {
@@ -143,6 +147,56 @@ const Cart = (props) => {
     <div>
       <ToastContainer />
       <h2 className="text-7xl">CART</h2>
+      {shippedStatus ||
+        (cart && (
+          <div className="grid gap-2 lg:grid-cols-4">
+            {cart.map((item, index) => (
+              <div
+                className="w-full rounded-lg shadow-md lg:max-w-sm"
+                key={index}
+              >
+                <div>
+                  <img
+                    src={galleryImage[item.itemid - 1]}
+                    alt=""
+                    className="object-cover w-full h-48"
+                  />
+                  <div className="p-4">
+                    <h4 className="text-xl font-semibold text-blue-600">
+                      {item.cart_item}
+                    </h4>
+                    <p className="mb-2 leading-normal">{item.quantity}</p>
+                  </div>
+                </div>
+                <div className="px-4 py-2 text-sm text-red-500">
+                  <div>
+                    <input
+                      type="text"
+                      value={newQuantity}
+                      onChange={handleUpdateCart}
+                      className="border"
+                    />
+                    <button
+                      onClick={() => updateCart(item.cartid, item.itemid)}
+                      className="border"
+                    >
+                      UPDATE CART
+                    </button>
+                  </div>
+                  <button
+                    onClick={() => deleteCart(item.itemid)}
+                    className="border"
+                  >
+                    DELETE
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+      <button onClick={() => addToShipment(cart[0].cartid)}>
+        PROCEED TO PAY
+      </button>
       <h3>email id: {props.emailId}</h3>
       <h3>item id: {props.itemId}</h3>
       <table>

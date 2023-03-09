@@ -150,36 +150,77 @@ const Gallery = (props) => {
     <>
       <ToastContainer />
       <h1 className="text-7xl">GALLERY</h1>
-      <button onClick={() => setShipppedStatus(true)}>test</button>
       {/* ///////////////////// TEST TOAST /////////////////////// */}
       {/* <div>
         <button onClick={showToastMessage}>Notify</button>
         <ToastContainer/>
       </div> */}
-
       {allItems && (
-        <table>
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>name</th>
-              <th>image</th>
-              <th>desciption</th>
-              <th>ingredients</th>
-              <th>price ($)</th>
-              <th>stock</th>
-              <th>tag</th>
-            </tr>
-          </thead>
-          <tbody>
-            {allItems.map((item, index) => {
-              return (
-                <div
-                  key={item.id}
-                  onClick={() => enlarge(item.id)}
-                  className=""
-                >
-                  <Card className="max-w-[24rem] overflow-hidden">
+        <div className="grid gap-2 lg:grid-cols-4">
+          {allItems.map((item, index) => (
+            <div
+              className="w-full rounded-lg shadow-md lg:max-w-sm"
+              key={item.id}
+            >
+              <div onClick={() => enlarge(item.id)}>
+                <img
+                  src={galleryImage[index]}
+                  alt=""
+                  className="object-cover w-full h-48"
+                />
+                <div className="p-4">
+                  <h4 className="text-xl font-semibold text-blue-600">
+                    {item.name}
+                  </h4>
+                  <p className="mb-2 leading-normal">{item.description}</p>
+                  <div className="flex">
+                    <p className="mb-2 leading-normal">$ {item.price}</p>
+                    <p className="mb-2 leading-normal relative left-[170px]">QTY: {item.stock}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="p-4">
+                {props.accessToken && (
+                  <div className="flex">
+                    <button
+                      onClick={() => {
+                        addToFavourites(item.id);
+                        // addToFavMessage();
+                      }}
+                      className="px-4 py-2 text-sm text-red-500 rounded shadow"
+                    >
+                      {/* <ToastContainer /> */}
+                      Add to Favourites
+                    </button>
+
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                      />
+                    </svg>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      {allItems && (
+        <div className="flex flex-row">
+          {allItems.map((item, index) => {
+            return (
+              <div key={item.id} className="">
+                <Card className="max-w-[24rem] overflow-hidden">
+                  <div onClick={() => enlarge(item.id)}>
                     <CardHeader
                       floated={false}
                       shadow={false}
@@ -200,74 +241,45 @@ const Gallery = (props) => {
                         {item.description}
                       </Typography>
                     </CardBody>
-                  </Card>
-                </div>
-              );
-            })}
-            {allItems.map((item, index) => {
-              return (
-                <tr key={item.id}>
-                  <td>{item.id}</td>
-                  <td>{item.name}</td>
-                  <td>
-                    <img src={galleryImage[index]} alt="" />
-                  </td>
-                  <td>{item.description}</td>
-                  <td>{item.ingredients}</td>
-                  <td>{item.price}</td>
-                  <td>{item.stock}</td>
-                  <td>{item.tag}</td>
-                  {props.email && (
-                    <td>
-                      <button
-                        onClick={() => {
-                          addToFavourites(item.id);
-                          // addToFavMessage();
-                        }}
-                      >
-                        {/* <ToastContainer /> */}
-                        Add to Favourites
-                      </button>
-                    </td>
-                  )}
-                  {props.email && (
-                    <td>
-                      <label htmlFor="cart-quantity"></label>
-                      <input
-                        type="text"
-                        id="cart-quantity"
-                        value={cartQuantity}
-                        onChange={handleCartQuantity}
-                        className="border border-black"
-                      />
-                      <button onClick={() => addToCart(item.id)}>
-                        Add to cart
-                      </button>
-                      {/* /////////////////////////////// ITEM MODAL ////////////////// */}
-                      <button onClick={() => enlarge(item.id)}>Pop Up</button>
-                      {/* <ItemModal itemId={item.id} itemName={item.name} itemDescription={item.description} itemIngredients={item.ingredients} itemPrice={item.price} imageIndex={index}/> */}
-                      {/* <div
-                      className={popUp ? "model open" : "model"}
-                      onClick={() => setPopUp(false)}
-                    >
-                      <p>{item.id}</p>
-                      <p>{item.name}</p>
-                      <img src={galleryImage[item.id]} alt="" />
-                      {item.id}
-                      <p>{item.description}</p>
-                      <p>{item.ingredients}</p>
-                      <p>{item.price}</p>
-                      <p>{item.tag}</p>
-                    </div> */}
-                    </td>
-                  )}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      )}
+                  </div>
 
+                  <CardFooter className="flex items-center justify-between">
+                    {props.accessToken && (
+                      <div className="flex">
+                        <button
+                          onClick={() => {
+                            addToFavourites(item.id);
+                            // addToFavMessage();
+                          }}
+                        >
+                          {/* <ToastContainer /> */}
+                          Add to Favourites
+                        </button>
+                        <Typography className="font-normal">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-6 h-6"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                            />
+                          </svg>
+                        </Typography>
+                      </div>
+                    )}
+                  </CardFooter>
+                </Card>
+              </div>
+            );
+          })}
+        </div>
+      )}
       {/* {allItems &&
         allItems.map((item) => {
           return <div></div>;
@@ -278,7 +290,15 @@ const Gallery = (props) => {
           <div>
             <button onClick={() => setPopUp(false)}>Exit</button>
             <img src={galleryImage[arrayIndex]} />
-            {arrayIndex !== undefined ? allItems[arrayIndex].name : 11111}
+            {arrayIndex !== undefined ? (
+              <div>
+                <h1>{allItems[arrayIndex].name}</h1>
+                <h1>{allItems[arrayIndex].description}</h1>
+                <h1>{allItems[arrayIndex].ingredients}</h1>
+              </div>
+            ) : (
+              11111
+            )}
             <input
               type="text"
               id="cart-quantity"

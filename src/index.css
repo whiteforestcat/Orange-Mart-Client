@@ -38,3 +38,8 @@
   padding: 20px 20px;
   margin: 0 auto;
 }
+
+input[type="radio"]:checked + label {
+  @apply bg-red-500;
+  /* @apply text-white; */
+}

@@ -60,6 +60,33 @@ const Favourites = (props) => {
       <h2 className="text-7xl">FAVOURITES</h2>
       <h3>email id: {props.emailId}</h3>
       <h3>item id: {props.itemId}</h3>
+      {favourites && (
+        <div className="grid gap-2 lg:grid-cols-4">
+          {favourites.map((item, index) => (
+            <div
+              className="w-full rounded-lg shadow-md lg:max-w-sm"
+              key={index}
+            >
+              <div onClick={() => enlarge(item.id)}>
+                <img
+                  src={galleryImage[item.itemid - 1]}
+                  alt=""
+                  className="object-cover w-full h-48"
+                />
+                <div className="p-4">
+                  <h4 className="text-xl font-semibold text-blue-600">
+                    {item.favs_item}
+                  </h4>
+                  <p className="mb-2 leading-normal">{item.description}</p>
+                </div>
+              </div>
+              <div className="px-4 py-2 text-sm text-red-500">
+                <button onClick={() => deleteFav(item.itemid)}>DELETE</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
       <table>
         <thead>
           <tr>
