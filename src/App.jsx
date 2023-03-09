@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import "./index.css";
 import { Route, Routes } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
 import SignUp from "./components/SignUp";
@@ -25,6 +26,8 @@ function App() {
   const [admin, setAdmin] = useState();
   const [itemId, setItemId] = useState(); // item id in gallery is stored here
 
+  const navigate = useNavigate()
+
   let particulars = {};
 
   const logIn = async (details) => {
@@ -46,6 +49,7 @@ function App() {
       setEmailId(data.payload.id);
       setAdmin(data.adminStatus);
       console.log("User logged in");
+      navigate("/", { replace: true });
     } catch (error) {
       console.log(error);
     }
@@ -97,18 +101,30 @@ function App() {
               setItemId={setItemId}
               emailId={emailId}
               email={email}
+              accessToken={accessToken}
             />
           }
         />
         <Route
           path="/favourites"
-          element={<Favourites itemId={itemId} emailId={emailId} />}
+          element={
+            <Favourites
+              itemId={itemId}
+              emailId={emailId}
+              accessToken={accessToken}
+            />
+          }
         />
         <Route
           path="/cart"
-          element={<Cart itemId={itemId} emailId={emailId} />}
+          element={
+            <Cart itemId={itemId} emailId={emailId} accessToken={accessToken} />
+          }
         />
-        <Route path="/shipment" element={<Shipment emailId={emailId} />} />
+        <Route
+          path="/shipment"
+          element={<Shipment emailId={emailId} accessToken={accessToken} />}
+        />
         <Route
           path="/userlogo"
           element={
@@ -126,10 +142,11 @@ function App() {
               emailRef={emailRef}
               passwordRef={passwordRef}
               emailId={emailId}
+              accessToken={accessToken}
             />
           }
         />
-        <Route path="/payment" element={<Payment/>}/>
+        <Route path="/payment" element={<Payment />} />
       </Routes>
 
       {/* <SignUp /> */}

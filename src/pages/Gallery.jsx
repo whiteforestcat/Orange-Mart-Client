@@ -53,6 +53,7 @@ const Gallery = (props) => {
         method: "POST",
         headers: {
           "Content-type": "application/json",
+          Authorization: `Bearer ${props.accessToken}`,
         },
         body: JSON.stringify({
           emailId: props.emailId,
@@ -84,6 +85,7 @@ const Gallery = (props) => {
         method: "POST",
         headers: {
           "Content-type": "application/json",
+          Authorization: `Bearer ${props.accessToken}`,
         },
         body: JSON.stringify({
           emailId: props.emailId,
@@ -152,6 +154,8 @@ const Gallery = (props) => {
         <button onClick={showToastMessage}>Notify</button>
         <ToastContainer/>
       </div> */}
+
+      
 
       {allItems && (
         <table>

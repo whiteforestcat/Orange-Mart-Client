@@ -16,6 +16,7 @@ const Cart = (props) => {
         method: "POST",
         headers: {
           "Content-type": "application/json",
+          Authorization: `Bearer ${props.accessToken}`,
         },
         body: JSON.stringify({ id: props.emailId }),
       });
@@ -37,6 +38,7 @@ const Cart = (props) => {
         method: "DELETE",
         headers: {
           "Content-type": "application/json",
+          Authorization: `Bearer ${props.accessToken}`,
         },
         body: JSON.stringify({ emailId: props.emailId, itemId: id }),
       });
@@ -60,6 +62,7 @@ const Cart = (props) => {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
+          Authorization: `Bearer ${props.accessToken}`,
         },
         body: JSON.stringify({
           newQuantity: newQuantity,
@@ -94,6 +97,7 @@ const Cart = (props) => {
       method: "POST",
       headers: {
         "Content-type": "application/json",
+        Authorization: `Bearer ${props.accessToken}`,
       },
       body: JSON.stringify({
         emailId: props.emailId,

@@ -12,6 +12,7 @@ const Shipment = (props) => {
         method: "POST",
         headers: {
           "Content-type": "application/json",
+          Authorization: `Bearer ${props.accessToken}`,
         },
         body: JSON.stringify({ id: props.emailId }),
       });
@@ -33,6 +34,7 @@ const Shipment = (props) => {
         method: "DELETE",
         headers: {
           "Content-type": "application/json",
+          Authorization: `Bearer ${props.accessToken}`,
         },
         body: JSON.stringify({ emailId: props.emailId, cartId: id }),
       });

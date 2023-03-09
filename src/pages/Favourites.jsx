@@ -12,6 +12,7 @@ const Favourites = (props) => {
         method: "POST",
         headers: {
           "Content-type": "application/json",
+          Authorization: `Bearer ${props.accessToken}`,
         },
         body: JSON.stringify({ id: props.emailId }),
       });
@@ -34,6 +35,7 @@ const Favourites = (props) => {
         method: "DELETE",
         headers: {
           "Content-type": "application/json",
+          Authorization: `Bearer ${props.accessToken}`,
         },
         body: JSON.stringify({ emailId: props.emailId, itemId: id }),
       });

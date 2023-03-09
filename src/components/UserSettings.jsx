@@ -10,6 +10,7 @@ const UserSettings = (props) => {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
+        Authorization: `Bearer ${props.accessToken}`,
       },
       body: JSON.stringify(details),
     });
