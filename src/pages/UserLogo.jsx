@@ -7,13 +7,17 @@ const UserLogo = (props) => {
   const handleClick = {};
 
   return (
-    <div>
-      <HomePage
-        emailRef={props.emailRef}
-        passwordRef={props.passwordRef}
-        handleLoginForm={props.handleLoginForm}
-      />
-      <SignUp />
+    <div className="bg-orange-200">
+      <div className="py-[100px]">
+        <HomePage
+          emailRef={props.emailRef}
+          passwordRef={props.passwordRef}
+          handleLoginForm={props.handleLoginForm}
+        />
+      </div>
+      <div className="pt-[100px] pb-[1000px]">
+        <SignUp />
+      </div>
     </div>
   );
 };

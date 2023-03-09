@@ -7,7 +7,7 @@ nav {
   align-items: center;
   justify-content: center;
   height: 5rem;
-  background-color: #008080;
+  background-color: rgb(194 65 12);
 }
 
 .navbar a:hover,

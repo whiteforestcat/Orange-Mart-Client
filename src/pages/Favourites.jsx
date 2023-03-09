@@ -55,65 +55,41 @@ const Favourites = (props) => {
   };
 
   return (
-    <div>
-      <ToastContainer />
-      <h2 className="text-7xl">FAVOURITES</h2>
-      <h3>email id: {props.emailId}</h3>
-      <h3>item id: {props.itemId}</h3>
-      {favourites && (
-        <div className="grid gap-2 lg:grid-cols-4">
-          {favourites.map((item, index) => (
-            <div
-              className="w-full rounded-lg shadow-md lg:max-w-sm"
-              key={index}
-            >
-              <div onClick={() => enlarge(item.id)}>
-                <img
-                  src={galleryImage[item.itemid - 1]}
-                  alt=""
-                  className="object-cover w-full h-48"
-                />
-                <div className="p-4">
-                  <h4 className="text-xl font-semibold text-blue-600">
-                    {item.favs_item}
-                  </h4>
-                  <p className="mb-2 leading-normal">{item.description}</p>
+    <div className="bg-orange-200 pb-[2000px]">
+      <div className="mx-[100px]">
+        <ToastContainer />
+        <h2 className="text-7xl text-center py-[50px]">FAVOURITES</h2>
+        {favourites && (
+          <div className="grid gap-2 lg:grid-cols-4">
+            {favourites.map((item, index) => (
+              <div
+                className="w-full rounded-lg shadow-md lg:max-w-sm bg-orange-600"
+                key={index}
+              >
+                <div onClick={() => enlarge(item.id)}>
+                  <img
+                    src={galleryImage[item.itemid - 1]}
+                    alt=""
+                    className="object-cover w-full h-48"
+                  />
+                  <div className="p-4">
+                    <h4 className="text-xl font-semibold">{item.favs_item}</h4>
+                    <p className="mb-2 leading-normal">{item.description}</p>
+                  </div>
+                </div>
+                <div className="px-4 py-2 text-sm text-red-500">
+                  <button
+                    onClick={() => deleteFav(item.itemid)}
+                    className="px-4 py-2 text-sm text-white rounded shadow border-4 border-orange-700 bg-orange-700"
+                  >
+                    DELETE
+                  </button>
                 </div>
               </div>
-              <div className="px-4 py-2 text-sm text-red-500">
-                <button onClick={() => deleteFav(item.itemid)}>DELETE</button>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-      <table>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>image</th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* <button onClick={() => getFavourites()}>All Favourites</button> */}
-          {favourites &&
-            favourites.map((item, index) => {
-              return (
-                <tr key={index}>
-                  <td>{item.favs_item}</td>
-                  <td>
-                    <img src={galleryImage[item.itemid - 1]} alt="" />
-                  </td>
-                  <td>
-                    <button onClick={() => deleteFav(item.itemid)}>
-                      DELETE
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-        </tbody>
-      </table>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -11,7 +11,7 @@ import {
 
 const NavBar = (props) => {
   return (
-    <div>
+    <div className="text-xl">
       <header className={styles.navbar}>
         <nav>
           <li>

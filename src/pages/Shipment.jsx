@@ -5,6 +5,8 @@ import { galleryImage } from "../image";
 
 const Shipment = (props) => {
   const [shipment, setShipment] = useState();
+  const [userShipment, setUserShipment] = useState();
+  // let userShipment;
 
   const getShipment = async () => {
     try {
@@ -25,8 +27,21 @@ const Shipment = (props) => {
   };
 
   useEffect(() => {
-    getShipment()
-  }, [])
+    getShipment();
+  }, []);
+
+  useEffect(() => {
+    console.log(shipment);
+    console.log(props.email);
+    if (shipment) {
+      setUserShipment(shipment.filter((item) => item.name === props.email));
+      console.log(userShipment);
+    }
+    // if (shipment) {
+    //   userShipment = shipment.filter((item) => item.name === props.email);
+    //   console.log(userShipment)
+    // }
+  }, [shipment]);
 
   const deleteShipment = async (id) => {
     try {
@@ -53,14 +68,15 @@ const Shipment = (props) => {
   };
 
   return (
-    <div>
+    <div className="bg-orange-200 pb-[2000px]">
+      <div className="mx-[100px]"></div>
       <ToastContainer />
-      <h2 className="text-7xl">Shipment</h2>
-      {shipment && (
+      <h2 className="text-7xl text-center py-[50px]">Shipment</h2>
+      {userShipment && (
         <div className="grid gap-2 lg:grid-cols-4">
-          {shipment.map((item, index) => (
+          {userShipment.map((item, index) => (
             <div
-              className="w-full rounded-lg shadow-md lg:max-w-sm"
+              className="w-full rounded-lg shadow-md lg:max-w-sm bg-orange-600"
               key={index}
             >
               <div>
@@ -70,7 +86,7 @@ const Shipment = (props) => {
                   className="object-cover w-full h-48"
                 />
                 <div className="p-4">
-                  <h4 className="text-xl font-semibold text-blue-600">
+                  <h4 className="text-xl font-semibold">
                     {item.cart_item}
                   </h4>
                   <p className="mb-2 leading-normal">{item.description}</p>
@@ -81,38 +97,11 @@ const Shipment = (props) => {
               </div> */}
             </div>
           ))}
-          <button onClick={() => deleteShipment(shipment[0].cartid)}>
+          <button onClick={() => deleteShipment(userShipment[0].cartid)}>
             DELETE
           </button>
         </div>
       )}
-      <table>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Image</th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* <button onClick={() => getShipment()}>All Shipment</button> */}
-          {shipment &&
-            shipment.map((item, index) => {
-              return (
-                <tr key={index}>
-                  <td>{item.cart_item}</td>
-                  <td>
-                    <img src={galleryImage[item.itemid - 1]} alt="test" />
-                  </td>
-                </tr>
-              );
-            })}
-          <td>
-            <button onClick={() => deleteShipment(shipment[0].cartid)}>
-              DELETE
-            </button>
-          </td>
-        </tbody>
-      </table>
     </div>
   );
 };

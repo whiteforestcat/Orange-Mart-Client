@@ -1,4 +1,6 @@
 import React, { useRef } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const UserSettings = (props) => {
   const passwordRef = useRef();
@@ -16,6 +18,12 @@ const UserSettings = (props) => {
     });
     const data = await res.json();
     console.log(data);
+
+    if (data === "password updated") {
+      toast.success(data, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
   };
 
   const handlleFormSubmit = (e) => {
@@ -25,17 +33,25 @@ const UserSettings = (props) => {
   };
 
   return (
-    <div>
-      <h1>USER SETTINGS</h1>
+    <div className="bg-orange-200 pb-[2000px] text-center">
+      <ToastContainer />
+      <h1 className="text-7xl text-center py-[50px]">USER SETTINGS</h1>
       <form action="" onSubmit={handlleFormSubmit}>
-        <label htmlFor="new-password">New Password</label>
+        <label htmlFor="new-password" className="text-xl font-semibold">
+          New Password
+        </label>
         <input
           type="text"
           id="new-password"
-          className="border"
+          className="border rounded-lg"
           ref={passwordRef}
         />
-        <button type="submit">Submit</button>
+        <button
+          type="submit"
+          className="text-xl font-semibold border rounded-xl px-2 bg-orange-700"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );

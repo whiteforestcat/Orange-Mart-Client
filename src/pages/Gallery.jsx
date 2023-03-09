@@ -147,170 +147,118 @@ const Gallery = (props) => {
   }, [shippedStatus]);
 
   return (
-    <>
-      <ToastContainer />
-      <h1 className="text-7xl">GALLERY</h1>
-      {/* ///////////////////// TEST TOAST /////////////////////// */}
-      {/* <div>
+    <div className="bg-orange-200">
+      <div className="mx-[100px]">
+        <ToastContainer />
+        <h1 className="text-7xl text-center py-[50px]">GALLERY</h1>
+        {/* ///////////////////// TEST TOAST /////////////////////// */}
+        {/* <div>
         <button onClick={showToastMessage}>Notify</button>
         <ToastContainer/>
       </div> */}
-      {allItems && (
-        <div className="grid gap-2 lg:grid-cols-4">
-          {allItems.map((item, index) => (
-            <div
-              className="w-full rounded-lg shadow-md lg:max-w-sm"
-              key={item.id}
-            >
-              <div onClick={() => enlarge(item.id)}>
-                <img
-                  src={galleryImage[index]}
-                  alt=""
-                  className="object-cover w-full h-48"
-                />
-                <div className="p-4">
-                  <h4 className="text-xl font-semibold text-blue-600">
-                    {item.name}
-                  </h4>
-                  <p className="mb-2 leading-normal">{item.description}</p>
-                  <div className="flex">
-                    <p className="mb-2 leading-normal">$ {item.price}</p>
-                    <p className="mb-2 leading-normal relative left-[170px]">QTY: {item.stock}</p>
+        {allItems && (
+          <div className="grid gap-2 lg:grid-cols-4">
+            {allItems.map((item, index) => (
+              <div
+                className="w-full rounded-lg shadow-md lg:max-w-sm bg-orange-600"
+                key={item.id}
+              >
+                <div onClick={() => enlarge(item.id)}>
+                  <img
+                    src={galleryImage[index]}
+                    alt=""
+                    className="object-cover w-full h-48"
+                  />
+                  <div className="p-4">
+                    <h4 className="text-xl font-semibold">{item.name}</h4>
+                    <p className="mb-2 leading-normal text-yellow-50">
+                      {item.description}
+                    </p>
+                    <div className="flex">
+                      <p className="mb-2 leading-normal text-yellow-50">
+                        $ {item.price}
+                      </p>
+                      <p className="mb-2 leading-normal relative left-[170px] text-yellow-50">
+                        QTY: {item.stock}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="p-4">
-                {props.accessToken && (
-                  <div className="flex">
-                    <button
-                      onClick={() => {
-                        addToFavourites(item.id);
-                        // addToFavMessage();
-                      }}
-                      className="px-4 py-2 text-sm text-red-500 rounded shadow"
-                    >
-                      {/* <ToastContainer /> */}
-                      Add to Favourites
-                    </button>
-
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-                      />
-                    </svg>
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-      {allItems && (
-        <div className="flex flex-row">
-          {allItems.map((item, index) => {
-            return (
-              <div key={item.id} className="">
-                <Card className="max-w-[24rem] overflow-hidden">
-                  <div onClick={() => enlarge(item.id)}>
-                    <CardHeader
-                      floated={false}
-                      shadow={false}
-                      color="transparent"
-                      className="m-0 rounded-none"
-                    >
-                      <img src={galleryImage[index]} alt="" />
-                    </CardHeader>
-                    <CardBody>
-                      <Typography variant="h4" color="blue-gray">
-                        {item.name}
-                      </Typography>
-                      <Typography
-                        variant="lead"
-                        color="gray"
-                        className="mt-3 font-normal"
+                <div className="p-4">
+                  {props.accessToken && (
+                    <div className="flex">
+                      <button
+                        onClick={() => {
+                          addToFavourites(item.id);
+                          // addToFavMessage();
+                        }}
+                        className="px-4 py-2 text-sm text-white rounded shadow border-4 border-orange-700 bg-orange-700"
                       >
-                        {item.description}
-                      </Typography>
-                    </CardBody>
-                  </div>
+                        {/* <ToastContainer /> */}
+                        Add to Favourites
+                      </button>
 
-                  <CardFooter className="flex items-center justify-between">
-                    {props.accessToken && (
-                      <div className="flex">
-                        <button
-                          onClick={() => {
-                            addToFavourites(item.id);
-                            // addToFavMessage();
-                          }}
-                        >
-                          {/* <ToastContainer /> */}
-                          Add to Favourites
-                        </button>
-                        <Typography className="font-normal">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1.5}
-                            stroke="currentColor"
-                            className="w-6 h-6"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-                            />
-                          </svg>
-                        </Typography>
-                      </div>
-                    )}
-                  </CardFooter>
-                </Card>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                        />
+                      </svg>
+                    </div>
+                  )}
+                </div>
               </div>
-            );
-          })}
-        </div>
-      )}
-      {/* {allItems &&
-        allItems.map((item) => {
-          return <div></div>;
-        })} */}
-      {/* {<NewFav itemId={itemId}/>} */}
-      <div className={popUp ? "model open" : "model"}>
-        {allItems && (
-          <div>
-            <button onClick={() => setPopUp(false)}>Exit</button>
-            <img src={galleryImage[arrayIndex]} />
-            {arrayIndex !== undefined ? (
-              <div>
-                <h1>{allItems[arrayIndex].name}</h1>
-                <h1>{allItems[arrayIndex].description}</h1>
-                <h1>{allItems[arrayIndex].ingredients}</h1>
-              </div>
-            ) : (
-              11111
-            )}
-            <input
-              type="text"
-              id="cart-quantity"
-              value={cartQuantity}
-              onChange={handleCartQuantity}
-              className="border border-black"
-            />
-            <button onClick={() => addToCart(itemIndex)}>Add to cart</button>
+            ))}
           </div>
         )}
+        <div className={popUp ? "model open" : "model"}>
+          {allItems && (
+            <div className="bg-orange-200 p-[1000px] ">
+              <div className="bg-orange-600 text-center rounded-lg">
+                <button onClick={() => setPopUp(false)}>Exit</button>
+                <img src={galleryImage[arrayIndex]} />
+                {arrayIndex !== undefined ? (
+                  <div>
+                    <h1 className="text-xl font-semibold">
+                      {allItems[arrayIndex].name}
+                    </h1>
+                    <h1 className="mb-2 leading-normal text-yellow-50">
+                      {allItems[arrayIndex].description}
+                    </h1>
+                    <h1 className="mb-2 leading-normal text-yellow-50">
+                      {allItems[arrayIndex].ingredients}
+                    </h1>
+                  </div>
+                ) : (
+                  11111
+                )}
+                <input
+                  type="text"
+                  id="cart-quantity"
+                  value={cartQuantity}
+                  onChange={handleCartQuantity}
+                  className="border rounded-lg"
+                />
+                <button
+                  onClick={() => addToCart(itemIndex)}
+                  className="text-xl font-semibold border rounded-xl px-2 bg-orange-700"
+                >
+                  Add to cart
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -123,7 +123,13 @@ function App() {
         />
         <Route
           path="/shipment"
-          element={<Shipment emailId={emailId} accessToken={accessToken} />}
+          element={
+            <Shipment
+              email={email}
+              emailId={emailId}
+              accessToken={accessToken}
+            />
+          }
         />
         <Route
           path="/userlogo"

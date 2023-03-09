@@ -11,7 +11,7 @@ const Cart = (props) => {
   const [shippedStatus, setShipppedStatus] = useState(false);
   const [newQuantity, setNewQuantity] = useState();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const getCart = async () => {
     try {
@@ -144,114 +144,61 @@ const Cart = (props) => {
   }, [shippedStatus]);
 
   return (
-    <div>
-      <ToastContainer />
-      <h2 className="text-7xl">CART</h2>
-      {shippedStatus ||
-        (cart && (
-          <div className="grid gap-2 lg:grid-cols-4">
-            {cart.map((item, index) => (
-              <div
-                className="w-full rounded-lg shadow-md lg:max-w-sm"
-                key={index}
-              >
-                <div>
-                  <img
-                    src={galleryImage[item.itemid - 1]}
-                    alt=""
-                    className="object-cover w-full h-48"
-                  />
-                  <div className="p-4">
-                    <h4 className="text-xl font-semibold text-blue-600">
-                      {item.cart_item}
-                    </h4>
-                    <p className="mb-2 leading-normal">{item.quantity}</p>
-                  </div>
-                </div>
-                <div className="px-4 py-2 text-sm text-red-500">
+    <div className="bg-orange-200 pb-[2000px]">
+      <div className="mx-[100px]">
+        <ToastContainer />
+        <h2 className="text-7xl text-center py-[50px]">CART</h2>
+        {shippedStatus ||
+          (cart && (
+            <div className="grid gap-2 lg:grid-cols-4">
+              {cart.map((item, index) => (
+                <div
+                  className="w-full rounded-lg shadow-md lg:max-w-sm bg-orange-600"
+                  key={index}
+                >
                   <div>
-                    <input
-                      type="text"
-                      value={newQuantity}
-                      onChange={handleUpdateCart}
-                      className="border"
+                    <img
+                      src={galleryImage[item.itemid - 1]}
+                      alt=""
+                      className="object-cover w-full h-48"
                     />
-                    <button
-                      onClick={() => updateCart(item.cartid, item.itemid)}
-                      className="border"
-                    >
-                      UPDATE CART
-                    </button>
+                    <div className="p-4">
+                      <h4 className="text-xl font-semibold">
+                        {item.cart_item}
+                      </h4>
+                      <p className="mb-2 leading-normal">{item.quantity}</p>
+                    </div>
                   </div>
-                  <button
-                    onClick={() => deleteCart(item.itemid)}
-                    className="border"
-                  >
-                    DELETE
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        ))}
-      <button onClick={() => addToShipment(cart[0].cartid)}>
-        PROCEED TO PAY
-      </button>
-      <h3>email id: {props.emailId}</h3>
-      <h3>item id: {props.itemId}</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Image</th>
-            <th>Quantity</th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* <button onClick={() => getCart()}>All Cart</button> */}
-          {shippedStatus ||
-            (cart &&
-              cart.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{item.cart_item}</td>
-                    <td>
-                      <img src={galleryImage[item.itemid - 1]} alt="" />
-                    </td>
-                    <td>{item.quantity}</td>
-                    <td>
-                      <button
-                        onClick={() => deleteCart(item.itemid)}
-                        className="border"
-                      >
-                        DELETE
-                      </button>
-                    </td>
-                    <td>
+                  <div className="px-4 py-2 text-sm text-red-500">
+                    <div>
                       <input
                         type="text"
                         value={newQuantity}
                         onChange={handleUpdateCart}
-                        className="border"
+                        className="border rounded-lg py-2"
                       />
                       <button
                         onClick={() => updateCart(item.cartid, item.itemid)}
-                        className="border"
+                        className="px-4 py-2 text-sm text-white rounded shadow border-4 border-orange-700 bg-orange-700"
                       >
                         UPDATE CART
                       </button>
-                    </td>
-                  </tr>
-                );
-              }))}
-          <NavLink to="/payment">
-            {/* <button onClick={() => console.log("test payment")}>PAY - redirect</button> */}
-            <button onClick={() => addToShipment(cart[0].cartid)}>
-              PROCEED TO PAY
-            </button>
-          </NavLink>
-        </tbody>
-      </table>
+                    </div>
+                    <button
+                      onClick={() => deleteCart(item.itemid)}
+                      className="px-4 py-2 text-sm text-white rounded shadow border-4 border-orange-700 bg-orange-700"
+                    >
+                      DELETE
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
+        <button onClick={() => addToShipment(cart[0].cartid)}>
+          PROCEED TO PAY
+        </button>
+      </div>
     </div>
   );
 };
