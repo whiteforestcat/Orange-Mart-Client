@@ -65,7 +65,7 @@ const SignUp = () => {
           Password
         </label>
         <input
-          type="text"
+          type="password"
           id="password"
           ref={passwordRef}
           className="border rounded-lg"

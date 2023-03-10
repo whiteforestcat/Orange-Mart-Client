@@ -22,7 +22,7 @@ const HomePage = (props) => {
           Password
         </label>
         <input
-          type="text"
+          type="password"
           id="logInPassword"
           ref={props.passwordRef}
           className="border rounded-lg"
