@@ -13,6 +13,8 @@ Key technolgoies used:
 |                     | - Non-User                  |                                      |
 |                     | - Normal User               |                                      |
 |                     | - Admin User                |
+
+
 There is more emphasis on designing on the SQL database, which can be found [here](#database-tables--relationships). There is a need for a logger-service table to link data between connected users, although the project hasn't included that functionality as of now.
 
 THe project also incoporates user authentication as well, through protected routes with the controller. The passwords are hashed with bcrypt, and access/refresh tokens are generated with Json Web Tokens (JWTs). However, the actual JWT log out is not implmented as of now.
@@ -38,15 +40,7 @@ There are 3 main types of users
 
 #### Database tables & relationships
 
-![database tables & relationships](./diagrams/database/display-db-rs.drawio.svg)
-
-#### Snapshots
-
-![welcome page](./diagrams/snapshots/welcome-page.png)
-
-![records adding page](./diagrams/snapshots/add-records-page.png)
-
-![admin page](./diagrams/snapshots/admin-page.png)
+![database tables & relationships](src/diagrams/relationship-table.png)
 
 ## Installation / Dependencies
 
@@ -73,22 +67,8 @@ _.env config:_
 
 **1. Database design**
 
-Much time has been spent reiterating the SQL tables & relationships. As this was the first time doing, I felt like I was going around in circles. Probably took on more than I could chew too. Nevertheless, it was fun linking tables together.
+Much time was put into constructing the tables and their relationships. However, it has be better optimised as this had created issues later on when creating the backend endpoints.
 
 **2. User Authentication**
 
-I initially struggled understanding the concept of JWT and implementation of user authentication. It took me a while to figure out the process from generating the JWT with payload information on login, to obtaining the access tokens from the request body, to decoding of JWT in the middleware and retrieving the decoded payload in the controller at the request endpoint.
-
-**3. Time management**
-
-In the 10 days timeframe of this project, too much emphasis was given on the database & server. It took slightly over a week, with slightly more than 3 days to work on the frontend development. As a result, not much of the backend work could be implemented. On a personal note, I need to replan my approach to beter manage expectations and workload before starting on projects. Another hurdle on a similar note is a personal problem with balancing functionality and aesthetics when it comes to frontend dev. This slows down the progress towards reaching the MVP stage.
-
-#### To complete:
-
-**1. Server**
-
-Most of the endpoints that were planned for is generally not completed and not tested, let alone implemented in the frontend. I am excited to work on the Logger-servicer interactions.
-
-**2. Client**
-
-One of the benefits with working with tailwind is that I can reuse most CSS templates for different pages much easier than using vanilla CSS. Since I have more or less decided on the design of the UI components, I can focus on the functionalities for the rest of the frontend components. As of now, I have yet to incorporate the records page, connect and services page, profile page for different users, and reviews and comments functionalities of the servicers.
+JWT was used to create the accesss token and to recognise a particular user's login. When creating the admin only endpoints, the user email is checked initially if its admin schema is true. If false, it will return and exit the endpoint.
