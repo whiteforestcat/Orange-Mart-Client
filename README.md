@@ -40,7 +40,7 @@ There are 3 main types of users
 
 #### Database tables & relationships
 
-![database tables & relationships](src/diagrams/relationship-table.png)
+![database tables & relationships](src/diagrams/table-relationship.drawio.svg)
 
 ## Installation / Dependencies
 
