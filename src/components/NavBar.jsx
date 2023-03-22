@@ -32,11 +32,12 @@ const NavBar = (props) => {
                   //   navData.isActive ? active : ""
                   // }
                 >
-                  <img
+                  {/* <img
                     src="src/assets/images/login-logo.png"
                     width={30}
                     alt="login"
-                  />
+                  /> */}
+                  LOGIN
                 </NavLink>
               </li>
             </div>
