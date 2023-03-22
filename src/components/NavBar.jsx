@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import styles from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
 import {
   Tabs,
@@ -12,12 +11,12 @@ import {
 const NavBar = (props) => {
   return (
     <div className="text-xl">
-      <header className={styles.navbar}>
+      <header className="navbar">
         <nav>
           <li>
             <NavLink
               to="/"
-              className={(navData) => (navData.isActive ? styles.active : "")}
+              // className={(navData) => (navData.isActive ? active : "")}
             >
               Home
             </NavLink>
@@ -29,9 +28,9 @@ const NavBar = (props) => {
               <li>
                 <NavLink
                   to="/userlogo"
-                  className={(navData) =>
-                    navData.isActive ? styles.active : ""
-                  }
+                  // className={(navData) =>
+                  //   navData.isActive ? active : ""
+                  // }
                 >
                   <img
                     src="src/assets/images/login-logo.png"
@@ -77,9 +76,9 @@ const NavBar = (props) => {
                 <li>
                   <NavLink
                     to="/admin"
-                    className={(navData) =>
-                      navData.isActive ? styles.active : ""
-                    }
+                    // className={(navData) =>
+                    //   navData.isActive ? active : ""
+                    // }
                   >
                     ADMIN
                   </NavLink>
@@ -88,9 +87,9 @@ const NavBar = (props) => {
               <li>
                 <NavLink
                   to="/favourites"
-                  className={(navData) =>
-                    navData.isActive ? styles.active : ""
-                  }
+                  // className={(navData) =>
+                  //   navData.isActive ? active : ""
+                  // }
                 >
                   Favourites
                 </NavLink>
@@ -98,9 +97,9 @@ const NavBar = (props) => {
               <li>
                 <NavLink
                   to="/cart"
-                  className={(navData) =>
-                    navData.isActive ? styles.active : ""
-                  }
+                  // className={(navData) =>
+                  //   navData.isActive ? active : ""
+                  // }
                 >
                   Cart
                 </NavLink>
@@ -108,9 +107,9 @@ const NavBar = (props) => {
               <li>
                 <NavLink
                   to="/shipment"
-                  className={(navData) =>
-                    navData.isActive ? styles.active : ""
-                  }
+                  // className={(navData) =>
+                  //   navData.isActive ? active : ""
+                  // }
                 >
                   Shipment
                 </NavLink>
@@ -122,9 +121,9 @@ const NavBar = (props) => {
               <li>
                 <NavLink
                   to="/usersettings"
-                  className={(navData) =>
-                    navData.isActive ? styles.active : ""
-                  }
+                  // className={(navData) =>
+                  //   navData.isActive ? active : ""
+                  // }
                 >
                   {props.email}
                 </NavLink>
