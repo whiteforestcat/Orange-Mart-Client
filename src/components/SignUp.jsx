@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { URL } from "../App";
 
 const SignUp = () => {
   const emailRef = useRef();
@@ -10,7 +11,7 @@ const SignUp = () => {
 
   const signUp = async (details) => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/newuser", {
+      const res = await fetch(`${URL}/api/newuser`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",

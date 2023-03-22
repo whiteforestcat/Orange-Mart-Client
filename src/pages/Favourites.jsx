@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { galleryImage } from "../image";
+import { URL } from "../App";
 
 const Favourites = (props) => {
   const [favourites, setFavourites] = useState([]);
 
   const getFavourites = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/allfavourites", {
+      const res = await fetch(`${URL}/api/allfavourites`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -31,7 +32,7 @@ const Favourites = (props) => {
   const deleteFav = async (id) => {
     // console.log(id);
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/deletefav", {
+      const res = await fetch(`${URL}/api/deletefav`, {
         method: "DELETE",
         headers: {
           "Content-type": "application/json",

@@ -16,6 +16,8 @@ import UserLogo from "./pages/UserLogo";
 import UserSettings from "./components/UserSettings";
 import Payment from "./components/Payment";
 
+export const URL = import.meta.env.VITE_REACT_APP_SERVER_URL;
+
 function App() {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -26,13 +28,13 @@ function App() {
   const [admin, setAdmin] = useState();
   const [itemId, setItemId] = useState(); // item id in gallery is stored here
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   let particulars = {};
 
   const logIn = async (details) => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/login", {
+      const res = await fetch(`${URL}/api/login`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",

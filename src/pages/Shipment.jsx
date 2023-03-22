@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { galleryImage } from "../image";
+import { URL } from "../App";
 
 const Shipment = (props) => {
   const [shipment, setShipment] = useState();
@@ -10,7 +11,7 @@ const Shipment = (props) => {
 
   const getShipment = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/allshipment", {
+      const res = await fetch(`${URL}/api/allshipment`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -45,7 +46,7 @@ const Shipment = (props) => {
 
   const deleteShipment = async (id) => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/deleteshipment", {
+      const res = await fetch(`${URL}/api/deleteshipment`, {
         method: "DELETE",
         headers: {
           "Content-type": "application/json",

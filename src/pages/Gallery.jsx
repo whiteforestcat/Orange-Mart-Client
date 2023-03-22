@@ -3,6 +3,7 @@ import { galleryImage } from "../image";
 import ItemModal from "./ItemModal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { URL } from "../App";
 
 import {
   Card,
@@ -29,7 +30,7 @@ const Gallery = (props) => {
   };
 
   const fetchDisplayIems = async () => {
-    const res = await fetch("http://127.0.0.1:5000/api/allitems");
+    const res = await fetch(`${URL}/api/allitems`);
     const data = await res.json();
     console.log(data);
     setAllItems(data);
@@ -51,7 +52,7 @@ const Gallery = (props) => {
 
   const addToFavourites = async (id) => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/addtofavourites", {
+      const res = await fetch(`${URL}/api/addtofavourites`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -83,7 +84,7 @@ const Gallery = (props) => {
 
   const addToCart = async (id) => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/addtocart", {
+      const res = await fetch(`${URL}/api/addtocart`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",

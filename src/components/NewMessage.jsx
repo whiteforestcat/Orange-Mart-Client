@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { URL } from "../App";
 
 const NewMessage = (props) => {
   const titleRef = useRef();
@@ -8,7 +9,7 @@ const NewMessage = (props) => {
 
   const newMessage = async (details) => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/createmessage", {
+      const res = await fetch(`${URL}/api/createmessage`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",

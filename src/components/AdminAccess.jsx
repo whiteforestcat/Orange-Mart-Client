@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { URL } from "../App";
 
 const AdminAccess = (props) => {
   const [allUsers, setAllUsers] = useState();
   let particulars = {};
 
   const adminAccess = async (details) => {
-    const res = await fetch("http://127.0.0.1:5000/api/allusers", {
+    const res = await fetch(`${URL}/api/allusers`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",

@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { URL } from "../App";
 
 const UserSettings = (props) => {
   const passwordRef = useRef();
@@ -8,7 +9,7 @@ const UserSettings = (props) => {
   let particulars = {};
 
   const changePassword = async (id, details) => {
-    const res = await fetch(`http://127.0.0.1:5000/api/allusers/${id}`, {
+    const res = await fetch(`${URL}/api/allusers/${id}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
