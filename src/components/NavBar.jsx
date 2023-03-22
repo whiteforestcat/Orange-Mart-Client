@@ -35,7 +35,7 @@ const NavBar = (props) => {
                   <img
                     src="src/assets/images/login-logo.png"
                     width={30}
-                    alt=""
+                    alt="login"
                   />
                 </NavLink>
               </li>
